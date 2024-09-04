@@ -75,10 +75,10 @@ export default function Landing() {
             <div className=" hidden1 w-[100%]   bg-white  flex justify-center">
                 <div className="w-[100%] h-[70vh] sm:h-[25vh] md:h-[65vh] bg-white mt-[-10rem] z-10 flex  justify-around flex-wrap xl:h-[25vh] gap-5 xl:flex-nowrap shadow-xl xl:w-[90%] text-center    ">
                     <div className=" flex justify-center  items-center px-10 py-5  text-center gap-2">
-                        <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">90</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">YEARS FOUNDATION</h3>
+                        <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">68</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">YEAR&apos;S FOUNDATION</h3>
                     </div>
                     <div className=" flex justify-center items-center px-10 py-5  text-center gap-2">
-                        <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">1.5K</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">TOTAL MEMBERS</h3>
+                        <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">1500+</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">TOTAL MEMBERS</h3>
                     </div>
                     <div className=" flex justify-center items-center px-10 py-5  text-center gap-2">
                         <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">25</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">Total SEMINARS</h3>
@@ -237,7 +237,7 @@ export default function Landing() {
 
                 </div>
                 <div className="mt-10 h-[10vh] w-full flex items-center flex-col">
-                    <h2 className="text-[1rem] px-5 xl:text-[1.3rem]">36 years of tradition of faith!! An organization that protects life!</h2>
+                    <h2 className="text-[1rem] px-5 xl:text-[1.3rem]">68 years of tradition of faith!! An organization that protects life!</h2>
                 </div>
                 <div className="flex px-5 justify-center gap-7 md:gap-20">
                     {/* <div className=" w-[80%]   h-[inherte]  md:w-full xl:w-full flex justify-center gap-10 items-center xl:justify-around md:flex-col xl:flex-row">

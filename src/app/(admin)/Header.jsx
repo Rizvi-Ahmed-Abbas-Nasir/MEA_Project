@@ -7,7 +7,7 @@ export default function Headers() {
         <li className="w-full">
           <Link href="/" className="group">
             <p className="text-white text-[0.9rem] xl:text-[1.2rem] h-[7vh] flex items-center justify-center border-y-[2px] border-transparent group-hover:border-red-500 group-hover:bg-red-500 w-full transition-all duration-300 ease-in-out">
-             Go back to Home
+             Home
             </p>
           </Link>
         </li>
@@ -21,7 +21,7 @@ export default function Headers() {
         <li className="w-full">
           <Link href="/Admin/member_req" className="group">
             <p className="text-white text-[0.9rem] xl:text-[1.2rem] h-[7vh] flex items-center justify-center border-y-[2px] border-transparent group-hover:border-red-500 group-hover:bg-red-500 w-full transition-all duration-300 ease-in-out">
-              Members Request
+              Member&apos;s Request
             </p>
           </Link>
         </li>
