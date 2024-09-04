@@ -56,7 +56,7 @@ const page = () => {
             </div>
           </div>
           <div className='w-[50%]'>
-            <img className='w-full h-full object-cover' src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg" alt="" />
+            <img className='w-full h-full object-cover' src="assets/images/Rbg1.webp" alt="" />
           </div>
         </div>
 

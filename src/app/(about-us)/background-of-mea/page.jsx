@@ -22,13 +22,13 @@ const page = () => {
               <span className='font-bold text-white px-1 bg-[#C72626]'>Mr. M. R. Shah</span> filed a complaint against Engineer Divekar. Shah had acted out of personal animosity. This led to a wave of anger among the engineers of Mumbai Municipal Corporation. Due to the inactive policies of Brihanmumbai Engineers Union, some engineers left the union in 1990. Subsequently, under the leadership of Mr. Sharad Rao and Adv. Mahabal Shetty, the 'Municipal Engineers Association' was established. For the past 22 years, the Municipal Workers Union and affiliated organizations have secured salary increases, allowances, service facilities, and bonuses for engineers. Social security has been provided to engineers, and they have fought for their rights, with many demands being met. Some new engineers have joined the municipality, and this special newsletter has been published to prevent any confusion for them.</p>
           </div>
           <div className='md:w-[50%]'>
-            <img className='w-full h-full object-cover' src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt="" />
+            <img className='w-full h-full object-cover' src="assets/images/bg-1.webp" alt="" />
           </div>
         </div>
 
         <div className='flex gap-7 py-5 flex-col md:flex-row'>
           <div className='md:w-[50%]'>
-            <img className='w-full h-full object-cover' src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="" />
+            <img className='w-full h-full object-cover' src="assets/images/bg2.jpeg" alt="" />
           </div>
           <div className='md:w-[50%]'>
             <p> The struggles undertaken by the Municipal Engineers Association have yielded numerous results. For instance, promotion policies have been established, increases in salary, allowances, and service facilities have been achieved, and a decision was made to retain positions for degree-holding engineers. Compensation allowances were secured for engineers working in external departments. The five-year experience requirement for 103 junior engineers was relaxed. Secondary engineers in the roads department were not penalized. The demand for engineers to conduct their own inquiries was accepted. Engineers were freed from harassment by vigilance agencies. Protection was provided against attacks from engineers, municipal councilors, and troublemakers. Efforts are underway to create a law for engineers.

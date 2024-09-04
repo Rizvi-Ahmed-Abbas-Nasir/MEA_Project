@@ -98,7 +98,7 @@ export default function RegisterForm() {
   const ChangePass1 = (e) => {
     const Pass1 = e.target.value;
     setPassword(Pass1)
-    console.log(Pass1);
+
     const reg = /^[a-zA-Z0-9]+$/;
 
     if(reg.test(Pass1)){

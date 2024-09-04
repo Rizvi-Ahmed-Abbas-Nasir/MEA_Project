@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect,useState } from "react";
 import { IoCall } from "react-icons/io5";
-import heromage from "../Assets/IMGs/hero-image.png"
 import IMGs from "../Assets/IMGs/man.png"
 import { Nunito } from 'next/font/google'
 import { FaRegBuilding } from "react-icons/fa6";
@@ -103,19 +102,22 @@ export default function Landing() {
                         </Link>
                     </div>
                     <div className="w-[100%]  xl:w-[30%] md:h-[80] xl:h-[50vh] hidden3 ">
-                        <Image src={heromage}
+                        <Image src={"/assets/images/home.png"}
                         alt="heroimage"
                             className="w-[100%] h-[100%] xl:h-[100%] object-fit  "
+                            width={500}
+                            height={500}
 
                         />
                     </div>
-                    <div className="w-[100%]  xl:w-[30%] md:h-[80%] xl:h-[50vh] hidden3 ">
-                        <Image src={heromage}
+                    {/* <div className="w-[100%]  xl:w-[30%] md:h-[80%] xl:h-[50vh] hidden3 ">
+                        <Image src={"/assets/images/home.png"}
                         alt="hero image"
                             className="w-[100%] h-[100%] xl:h-[100%] object-fit  "
-
+                            width={500}
+                            height={500}
                         />
-                    </div>
+                    </div> */}
                 </div>
                 <div className="w-[90%] h-[15vh] bg-[#c72626]  items-center justify-center flex">
                     <h1 className=" text-[1.5rem] xl:text-[2.5rem] text-white  ">Municipal Engineer Association</h1>

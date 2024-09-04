@@ -119,7 +119,6 @@ export async function DELETE(req) {
     }
 
   } catch (e) {
-    console.log(e);
     return NextResponse.json({ error: e }, { status: 500 });
   }
 }

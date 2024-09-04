@@ -19,7 +19,6 @@ export default function RegisterForm() {
 
     //   var hiddenElement2 = document.querySelectorAll(".hidden2");
     //   var hiddenElement2 = document.querySelectorAll(".hidden3");
-      // console.log(hiddenElements);
        OnScrollAnimation(hiddenElements1)
        OnScrollAnimation(hiddenElements4)
        OnScrollAnimation(hiddenElements2)
@@ -43,7 +42,6 @@ export default function RegisterForm() {
         email,
         password,
       });
-      console.log(res)
       if(res?.error){
         alert("Invalid credentials");
         return
