@@ -122,10 +122,10 @@ export default function ImageUploadForm() {
   }
 
   return (
-    <div className="flex w-full h-screen flex-row bg-gray-100">
+    <div className="flex flex-col md:flex-row w-full h-screen bg-gray-100">
       <NAV />
       <div className="flex flex-col w-full md:w-4/5 lg:w-3/4 xl:w-2/3 gap-8 p-8 overflow-y-auto">
-        <h1 className="text-3xl font-bold text-gray-800">Upload Event Image</h1>
+        <h1 className="text-3xl font-bold text-gray-800 text-center md:text-left">Upload Event Image</h1>
         
         <form
           onSubmit={handleSubmit}
@@ -134,8 +134,9 @@ export default function ImageUploadForm() {
           <div className="flex flex-col gap-2">
             <label className="font-semibold text-gray-700">
               Title:
+              <br />
               <input
-                className="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -146,8 +147,9 @@ export default function ImageUploadForm() {
           <div className="flex flex-col gap-2">
             <label className="font-semibold text-gray-700">
               Date:
+              <br />
               <input
-                className="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 px-4 py-2 border w-full border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
@@ -158,8 +160,9 @@ export default function ImageUploadForm() {
           <div className="flex flex-col gap-2">
             <label className="font-semibold text-gray-700">
               Description:
+              <br />
               <textarea
-                className="mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 px-4 py-2 border w-full border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
@@ -169,6 +172,7 @@ export default function ImageUploadForm() {
           <div className="flex flex-col gap-2">
             <label className="font-semibold text-gray-700">
               Image:
+              <br />
               <input
                 className="mt-1 px-4 py-2 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="file"

@@ -1,31 +1,16 @@
-"use client"
-// import Image from "next/image"
-// import IMGs from "../../Assets/IMGs/man.png"
+"use client";
 import { useSession } from "next-auth/react";
-import Headers from "./Header"
-
+import Link from "next/link";
+import NavHeaders from "./Header";
 
 export default function NAV() {
   const { data: session } = useSession();
-    return (
-    <>
-      <div className="w-[50%] md:w-[25%] gl:w-[19%] xl:w-[15%] xl:h-[100%] shadow-md bg-[#c72626] flex flex-col  xl:text-xl">
-        <div className="w-full flex py-2 px-1 flex-col">
-            {/* <div className=" w-full flex justify-center items-center">
-                <Image 
-                className="Admin w-full"
-                src={IMGs}  
-                alt="Admin" />
-            </div> */}
-            <div className="w-full flex items-center justify-center flex-nowrap">
-                <h1 className="text-[0.9rem] xl:text-[1.2rem]  mb-4 text-white">
-                Welcome, {session?.user.name}
-                </h1>
-            </div>
-            <Headers/>
-        </div>
+  return (
+    <div className="w-[250px] h-screen shadow-lg bg-[#c72626] flex flex-col text-white">
+      <div className="flex flex-col items-center py-6">
+        <h1 className="text-xl font-semibold mb-6">Welcome, {session?.user.name}</h1>
+        <NavHeaders/>
       </div>
-    </>
-    )
-  }
-  
+    </div>
+  );
+}
