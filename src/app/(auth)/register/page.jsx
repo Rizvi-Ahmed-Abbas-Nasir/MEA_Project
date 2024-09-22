@@ -1,9 +1,8 @@
 "use client";
 import OnScrollAnimation from "../../../Components/OnScrollAnimmation";
 import { useEffect, useState, useRef } from "react";
-import Footer from '../../../Components/Footer'
-import Header from '../../../Components/Header'
-import Link from "next/link";
+import Footer from "../../../Components/Footer";
+import Header from "../../../Components/Header";
 import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
@@ -14,149 +13,154 @@ export default function RegisterForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [nameError, setNameError] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [numberError, setNumberError] = useState('');
-  const [degError, setDegError] = useState('');
-  const [pass2Error, setPass2Error] = useState('');
-  const [pass1Error, setPass1rror] = useState('');
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [numberError, setNumberError] = useState("");
+  const [degError, setDegError] = useState("");
+  const [pass2Error, setPass2Error] = useState("");
+  const [pass1Error, setPass1rror] = useState("");
 
-
+  // New states for uploaded PDFs
+  const [declarationForm, setDeclarationForm] = useState(null);
+  const [blankForm, setBlankForm] = useState(null);
+  const [isUploadComplete, setIsUploadComplete] = useState(false);
 
   const form = useRef();
   const router = useRouter();
 
   const ChangeName = (e) => {
     const Name = e.target.value;
-    setName(Name)
+    setName(Name);
     const reg = /^[a-zA-Z\s]+$/;
 
-    if(reg.test(Name)){
-      setNameError("")
-      setName(Name)
+    if (reg.test(Name)) {
+      setNameError("");
+      setName(Name);
+    } else if (!reg.test(Name)) {
+      setNameError("Only Alphabets are Allowed");
     }
-    else if(!reg.test(Name)){
-      setNameError("Only Alphaberts is Allowed")
+    if (Name.trim() === "") {
+      setNameError("Name is Required");
     }
-    if(Name.trim() === ""){
-      setNameError("Name is Required")
-    }
-  
-  }
+  };
 
   const ChangeEmail = (e) => {
     const Email = e.target.value;
-    setEmail(Email)
+    setEmail(Email);
     const reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if(reg.test(Email)){
-      setEmailError("")
-      setEmail(Email)
+    if (reg.test(Email)) {
+      setEmailError("");
+      setEmail(Email);
+    } else if (!reg.test(Email)) {
+      setEmailError("Invalid Email Id");
     }
-    else if(!reg.test(Email)){
-      setEmailError("InValid Email Id ")
+    if (Email.trim() === "") {
+      setEmailError("Email is Required");
     }
-    if(Email.trim() === ""){
-      setEmailError("Email is Required")
-    }
-  
-  }
+  };
+
   const ChangeNumber = (e) => {
     const Number = e.target.value;
-    setNumber(Number)
+    setNumber(Number);
     const reg = /^\d{10}$/;
 
-    if(reg.test(Number)){
-      setNumberError("")
-      setNumber(Number)
+    if (reg.test(Number)) {
+      setNumberError("");
+      setNumber(Number);
+    } else if (!reg.test(Number)) {
+      setNumberError("Number should be 10 Digits");
     }
-    else if(!reg.test(Number)){
-      setNumberError("Number should be 10 Digit")
+    if (Number.trim() === "") {
+      setNumberError("Number is Required");
     }
-    if(Number.trim() === ""){
-      setNumberError("Number is Required")
-    }
-  
-  }
+  };
 
   const ChangeDeg = (e) => {
     const Deg = e.target.value;
-    setDesignation(Deg)
+    setDesignation(Deg);
     const reg = /^[a-zA-Z0-9]+$/;
 
-    if(reg.test(Deg)){
-      setDegError("")
-      setDesignation(Deg)
+    if (reg.test(Deg)) {
+      setDegError("");
+      setDesignation(Deg);
     }
-  
-    if(Deg.trim() === ""){
-      setDegError("Designation is Required")
+    if (Deg.trim() === "") {
+      setDegError("Designation is Required");
     }
-  
-  }
+  };
 
   const ChangePass1 = (e) => {
     const Pass1 = e.target.value;
-    setPassword(Pass1)
-
+    setPassword(Pass1);
     const reg = /^[a-zA-Z0-9]+$/;
 
-    if(reg.test(Pass1)){
+    if (reg.test(Pass1)) {
       setPass1rror("");
-      setPassword(Pass1)
+      setPassword(Pass1);
+    }
+    if (Pass1.trim() === "") {
+      setPass1rror("Password is Required");
+    }
+  };
 
-    }
-    
-    if(Pass1.trim() === ""){
-      setPass1rror("Password is Required")
-    }
-  
-  }
   const ChangePass2 = (e) => {
     const Pass2 = e.target.value;
-    setConfirmPassword(Pass2)
+    setConfirmPassword(Pass2);
     const reg = /^[a-zA-Z0-9]+$/;
 
-    if(reg.test(Pass2)){
+    if (reg.test(Pass2)) {
       setPass2Error("");
-      setConfirmPassword(Pass2)
-
+      setConfirmPassword(Pass2);
     }
-  
-    if(Pass2.trim() === ""){
-      setPass2Error("password is Required")
+    if (Pass2.trim() === "") {
+      setPass2Error("Password is Required");
     }
-  
-  }
+  };
 
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    if (!declarationForm || !blankForm) {
+      setError("Please upload both the Declaration and Blank forms.");
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
+
     try {
+      const formData = new FormData();
+      formData.append("fullName", fullName);
+      formData.append("email", email);
+      formData.append("contactNumber", contactNumber);
+      formData.append("designation", designation);
+      formData.append("password", password);
+      formData.append("declarationForm", declarationForm);
+      formData.append("blankForm", blankForm);
+
       const res = await fetch("/api/memberReg", {
         method: "POST",
-        body: JSON.stringify({ fullName, email, contactNumber, designation, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body: formData,
       });
-      if (res.ok){
-        setName('');
-        setEmail('');
-        setNumber('');
-        setDesignation('');
-        setPassword('');
-        setConfirmPassword('');
-        alert("Register successful , wait till admin accept your request")
-        router.push('/login');
-      }
-      else {
+
+      if (res.ok) {
+        // Reset form on successful registration
+        setName("");
+        setEmail("");
+        setNumber("");
+        setDesignation("");
+        setPassword("");
+        setConfirmPassword("");
+        setDeclarationForm(null);
+        setBlankForm(null);
+        setIsUploadComplete(false);
+        alert("Register successful, wait till admin accept your request");
+        router.push("/login");
+      } else {
         const data = await res.json();
         setError(data.error);
       }
@@ -165,9 +169,18 @@ export default function RegisterForm() {
     }
   };
 
+  const handleFileUpload = (e, setFile) => {
+    const file = e.target.files[0];
+    setFile(file);
+
+    // Check if both files are uploaded
+    if (declarationForm && blankForm) {
+      setIsUploadComplete(true);
+    }
+  };
+
   useEffect(() => {
     if (typeof document !== "undefined") {
-      // will run in client's browser only
       const hiddenElements1 = document.querySelectorAll(".hidden3");
       const hiddenElements4 = document.querySelectorAll(".hidden4");
       const hiddenElements2 = document.querySelectorAll(".hidden2");
@@ -182,7 +195,7 @@ export default function RegisterForm() {
 
   return (
     <>
-    <Header />
+      <Header />
       <main>
         <section className="h-44 bg-[#232323] flex justify-center items-center flex-col text-white">
           <h1 className="text-5xl p-3">Register</h1>
@@ -190,6 +203,8 @@ export default function RegisterForm() {
         <section className="flex justify-center mt-7 mb-7 items-center min-h-screen hidden1 flex-col">
           <form onSubmit={handleSubmit} ref={form} className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
             <h2 className="text-2xl font-bold mb-6 text-center">Member Register</h2>
+
+            {/* Form fields */}
             <div className="mb-4">
               <label className="block text-gray-700 mb-2">Full Name</label>
               <input
@@ -201,7 +216,6 @@ export default function RegisterForm() {
                 required
               />
               {nameError && <p className="text-red-500 mb-4">{nameError}</p>}
-
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2">Email</label>
@@ -213,7 +227,7 @@ export default function RegisterForm() {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
                 required
               />
-               {emailError && <p className="text-red-500 mb-4">{emailError}</p>}
+              {emailError && <p className="text-red-500 mb-4">{emailError}</p>}
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2">Contact Number</label>
@@ -225,8 +239,8 @@ export default function RegisterForm() {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
                 required
               />
+              {numberError && <p className="text-red-500 mb-4">{numberError}</p>}
             </div>
-            {numberError && <p className="text-red-500 mb-4">{numberError}</p>}
             <div className="mb-4">
               <label className="block text-gray-700 mb-2">Designation</label>
               <input
@@ -237,8 +251,8 @@ export default function RegisterForm() {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
                 required
               />
+              {degError && <p className="text-red-500 mb-4">{degError}</p>}
             </div>
-            {degError && <p className="text-red-500 mb-4">{degError}</p>}
             <div className="mb-4">
               <label className="block text-gray-700 mb-2">Password</label>
               <input
@@ -249,7 +263,7 @@ export default function RegisterForm() {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
                 required
               />
-                {pass1Error && <p className="text-red-500 mb-4">{pass1Error}</p>}
+              {pass1Error && <p className="text-red-500 mb-4">{pass1Error}</p>}
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2">Confirm Password</label>
@@ -261,9 +275,52 @@ export default function RegisterForm() {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
                 required
               />
+              {pass2Error && <p className="text-red-500 mb-4">{pass2Error}</p>}
             </div>
-            {pass2Error && <p className="text-red-500 mb-4">{pass2Error}</p>}
-            <button type="submit" className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-[#C72625]">
+
+            {/* PDF download buttons */}
+            <div className="mb-4">
+            <label className="block text-gray-700 mb-2">Download This Form</label>
+              <div className="flex justify-between">
+                <a href="/assets/form/union_form.pdf" download className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+                  Union form
+                </a>
+                
+                <a href="/assets/form/union50_form.pdf" download className="bg-blue-500 text-white py-2 px-4 rounded-lg">
+                  Union 50 form
+                </a>
+              </div>
+            </div>
+
+            {/* File upload fields */}
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2">Upload Union Form</label>
+              <input
+                type="file"
+                onChange={(e) => handleFileUpload(e, setBlankForm)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+                accept=".pdf"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2">Upload Union 50 form</label>
+              <input
+                type="file"
+                onChange={(e) => handleFileUpload(e, setDeclarationForm)}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none"
+                accept=".pdf"
+                required
+              />
+            </div>
+
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+
+            {/* Submit button */}
+            <button
+              type="submit"
+              className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-[#C72625]"
+            >
               Register
             </button>
           </form>

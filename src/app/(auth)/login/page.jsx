@@ -88,7 +88,7 @@ export default function RegisterForm() {
       </form>
       <div className='m-2'>
             <p>Don't have an account? <span className='text-blue-700'>
-              <Link href={'/register'}>
+              <Link href={'/ecnumber'}>
                 Register
               </Link>
             </span></p>

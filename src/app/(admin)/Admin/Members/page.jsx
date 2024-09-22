@@ -67,38 +67,36 @@ export default function Page() {
           <NAV />
           <div className="flex flex-col w-full px-6 py-6 gap-6 h-screen overflow-y-auto bg-gray-100">
             <h1 className="text-4xl font-bold text-gray-800">Members</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {members.map((member) => (
-                <div
-                  key={member.memberId}
-                  className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 flex flex-col justify-between"
-                >
-                  <div>
-                    <p className="text-lg text-gray-700">
-                      <strong className="font-semibold">Name:</strong>{" "}
-                      {member.fullName}
-                    </p>
-                    <p className="text-lg text-gray-700">
-                      <strong className="font-semibold">Email:</strong>{" "}
-                      {member.email}
-                    </p>
-                    <p className="text-lg text-gray-700">
-                      <strong className="font-semibold">Contact Number:</strong>{" "}
-                      {member.contactNumber}
-                    </p>
-                    <p className="text-lg text-gray-700">
-                      <strong className="font-semibold">Designation:</strong>{" "}
-                      {member.designation}
-                    </p>
-                  </div>
-                  <button
-                    className="mt-4 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded transition duration-300 ease-in-out"
-                    onClick={() => deleteMember(member.memberId)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              ))}
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white border border-gray-200">
+                <thead>
+                  <tr className="bg-gray-200 text-gray-600 text-left">
+                    <th className="py-3 px-4 border-b">Name</th>
+                    <th className="py-3 px-4 border-b">Email</th>
+                    <th className="py-3 px-4 border-b">Contact Number</th>
+                    <th className="py-3 px-4 border-b">Designation</th>
+                    <th className="py-3 px-4 border-b">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {members.map((member) => (
+                    <tr key={member.memberId} className="hover:bg-gray-100">
+                      <td className="py-2 px-4 border-b">{member.fullName}</td>
+                      <td className="py-2 px-4 border-b">{member.email}</td>
+                      <td className="py-2 px-4 border-b">{member.contactNumber}</td>
+                      <td className="py-2 px-4 border-b">{member.designation}</td>
+                      <td className="py-2 px-4 border-b">
+                        <button
+                          className="px-2 py-1 bg-red-500 hover:bg-red-600 text-white rounded transition duration-300 ease-in-out"
+                          onClick={() => deleteMember(member.memberId)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
