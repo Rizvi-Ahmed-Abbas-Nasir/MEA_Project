@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { isApiValid } from "../../lib/functions";
 
 export async function GET(){
+    //fetching member Registration Table here
     try{
         const result = await executeQuery({
             query: "SELECT * FROM memberReg ORDER BY id DESC"

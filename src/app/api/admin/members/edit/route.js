@@ -2,6 +2,7 @@ import executeQuery from "../../../../lib/db";
 import { NextResponse } from "next/server";
 import { isApiValid } from "../../../../lib/functions";
 
+//delete approved member
 export async function DELETE(req) {
     try {
         const apiKey = await req.headers.get('authorization') 
