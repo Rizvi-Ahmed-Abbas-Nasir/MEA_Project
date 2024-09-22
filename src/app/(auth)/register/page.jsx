@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export default function RegisterForm() {
   const [fullName, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [employee_id, setEmployee_id] = useState("");
   const [contactNumber, setNumber] = useState("");
   const [designation, setDesignation] = useState("");
   const [password, setPassword] = useState("");
@@ -21,8 +22,8 @@ export default function RegisterForm() {
   const [pass1Error, setPass1rror] = useState("");
 
   // New states for uploaded PDFs
-  const [declarationForm, setDeclarationForm] = useState(null);
-  const [blankForm, setBlankForm] = useState(null);
+  const [bmcLetter50, setDeclarationForm] = useState(null);
+  const [bmcLetter, setBlankForm] = useState(null);
   const [isUploadComplete, setIsUploadComplete] = useState(false);
 
   const form = useRef();
@@ -89,6 +90,10 @@ export default function RegisterForm() {
       setDegError("Designation is Required");
     }
   };
+  const ChangeId =(e)=>{
+    const Id = e.target.value;
+    setEmployee_id(Id)
+  }
 
   const ChangePass1 = (e) => {
     const Pass1 = e.target.value;
@@ -122,7 +127,7 @@ export default function RegisterForm() {
     e.preventDefault();
     setError("");
 
-    if (!declarationForm || !blankForm) {
+    if (!bmcLetter50 || !bmcLetter) {
       setError("Please upload both the Declaration and Blank forms.");
       return;
     }
@@ -136,21 +141,26 @@ export default function RegisterForm() {
       const formData = new FormData();
       formData.append("fullName", fullName);
       formData.append("email", email);
+      formData.append("employee_id", employee_id);
       formData.append("contactNumber", contactNumber);
       formData.append("designation", designation);
       formData.append("password", password);
-      formData.append("declarationForm", declarationForm);
-      formData.append("blankForm", blankForm);
-
+      formData.append("bmcLetter50", bmcLetter50);
+      formData.append("bmcLetter", bmcLetter);
       const res = await fetch("/api/memberReg", {
+
         method: "POST",
         body: formData,
+        headers: {
+          authorization: process.env.NEXT_PUBLIC_API_KEY,
+        },
       });
-
+      console.log(formData)
       if (res.ok) {
         // Reset form on successful registration
         setName("");
         setEmail("");
+        setEmployee_id("");
         setNumber("");
         setDesignation("");
         setPassword("");
@@ -162,7 +172,7 @@ export default function RegisterForm() {
         router.push("/login");
       } else {
         const data = await res.json();
-        setError(data.error);
+        setError(data.message);
       }
     } catch (error) {
       setError("Failed to submit the form. Please try again.");
@@ -174,7 +184,7 @@ export default function RegisterForm() {
     setFile(file);
 
     // Check if both files are uploaded
-    if (declarationForm && blankForm) {
+    if (bmcLetter50 && bmcLetter) {
       setIsUploadComplete(true);
     }
   };
@@ -224,6 +234,18 @@ export default function RegisterForm() {
                 name="email"
                 value={email}
                 onChange={ChangeEmail}
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
+                required
+              />
+              {emailError && <p className="text-red-500 mb-4">{emailError}</p>}
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2">Employee Code</label>
+              <input
+                type="number"
+                name="employee_id"
+                value={employee_id}
+                onChange={ChangeId}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
                 required
               />

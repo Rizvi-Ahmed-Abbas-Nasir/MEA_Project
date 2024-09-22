@@ -5,7 +5,7 @@ import Header from "../../../Components/Header";
 import { useRouter } from "next/navigation";
 
 function Page() {
-  const [employeeCode, setEmployeeCode] = useState("");
+  const [employee_id, setEmployeeCode] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -14,17 +14,17 @@ function Page() {
     setError("");
 
     try {
-      const res = await fetch("/api/validateEmployeeCode", {
+      const res = await fetch("/api/validateMember", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ employeeCode }),
+        body: JSON.stringify({ employee_id }),
       });
 
       const data = await res.json();
-
-      if (data.message === true) {
+      console.log(data)
+      if (data.message == "true") {
         // Navigate to the register page if the employee code is valid
         router.push("/register");
       } else {
@@ -47,7 +47,7 @@ function Page() {
             <label className="block text-gray-700 mb-2">Employee Code</label>
             <input
               type="text"
-              value={employeeCode}
+              value={employee_id}
               onChange={(e) => setEmployeeCode(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
               required

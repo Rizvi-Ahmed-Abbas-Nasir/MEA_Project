@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import executeQuery from "../lib/db";
 
+//SETUP ROUTE
+
+
 export async function GET(req) {
   try {
     // SQL statement to create the memberReg table if it doesn't exist
@@ -9,11 +12,14 @@ export async function GET(req) {
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         fullName VARCHAR(45),
         email VARCHAR(45) UNIQUE,
+        employee_id varchar(45) UNIQUE,
         contactNumber VARCHAR(20),
         designation VARCHAR(45),
         password VARCHAR(100),
         isApproved BOOLEAN DEFAULT FALSE,
-        Role VARCHAR(45) DEFAULT 'user'
+        Role VARCHAR(45) DEFAULT 'user',
+        bmcLetter text,
+        bmcLetter50 text
       );
     `;
 
@@ -35,10 +41,13 @@ export async function GET(req) {
       memberId INT PRIMARY KEY AUTO_INCREMENT,
       fullName VARCHAR(45),
       email VARCHAR(45) UNIQUE,
+      employee_id varchar(45) UNIQUE,
       contactNumber VARCHAR(20),
       designation VARCHAR(200),
       password VARCHAR(100),
-      Role VARCHAR(45)
+      Role VARCHAR(45),
+      bmcLetter text,
+      bmcLetter50 text
     );
   `;
 
@@ -71,6 +80,14 @@ export async function GET(req) {
       );
     `;
 
+    //create honorary table
+    const createEmployeeCodeTable = `
+    CREATE TABLE IF NOT EXISTS employee_codes (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      employee_id VARCHAR(45)
+    );
+  `;
+
     // Execute the query to create the memberReg table
     const resultMemberReg = await executeQuery({ query: createMemberRegTable });
 
@@ -86,8 +103,10 @@ export async function GET(req) {
 
 
     const resultHonorary = await executeQuery({ query: createHonoraryTable });
+
+    const resultEmployee = await executeQuery({ query: createEmployeeCodeTable });
     // Return the result as a JSON response
-    return NextResponse.json({ result: { resultMemberReg, resultReplies, resultMembers, resultEvents, resultGallery, resultHonorary } });
+    return NextResponse.json({ result: { resultMemberReg, resultReplies, resultMembers, resultEvents, resultGallery, resultHonorary, resultEmployee } });
 
   } catch (err) {
 
