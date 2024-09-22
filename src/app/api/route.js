@@ -80,6 +80,14 @@ export async function GET(req) {
       );
     `;
 
+    //create honorary table
+    const createEmployeeCodeTable = `
+    CREATE TABLE IF NOT EXISTS employee_codes (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      employee_id VARCHAR(45)
+    );
+  `;
+
     // Execute the query to create the memberReg table
     const resultMemberReg = await executeQuery({ query: createMemberRegTable });
 
@@ -95,8 +103,10 @@ export async function GET(req) {
 
 
     const resultHonorary = await executeQuery({ query: createHonoraryTable });
+
+    const resultEmployee = await executeQuery({ query: createEmployeeCodeTable });
     // Return the result as a JSON response
-    return NextResponse.json({ result: { resultMemberReg, resultReplies, resultMembers, resultEvents, resultGallery, resultHonorary } });
+    return NextResponse.json({ result: { resultMemberReg, resultReplies, resultMembers, resultEvents, resultGallery, resultHonorary, resultEmployee } });
 
   } catch (err) {
 
