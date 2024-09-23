@@ -12,7 +12,8 @@ export async function GET(req) {
 
   const fileName = req.headers.get('fileName');
   const formType = req.headers.get('formType');
-
+  const download = req.headers.get('download')
+  
   if (!fileName || !formType) {
     return NextResponse.json({ message: "fileName or formType not specified" }, { status: 400 });
   }
@@ -28,8 +29,10 @@ export async function GET(req) {
     // Set the headers for downloading the file
     const headers = new Headers();
     headers.set('Content-Type', 'application/pdf'); 
-    // headers.set('Content-Disposition', `attachment; filename="${fileName}"`);
 
+    if(download == true){
+      headers.set('Content-Disposition', `attachment; filename="${fileName}"`);
+    }
     // Return a new Response and stream the file
     return new Response(fileStream, { headers });
   } else {
