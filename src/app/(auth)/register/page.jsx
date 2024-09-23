@@ -3,7 +3,7 @@ import OnScrollAnimation from "../../../Components/OnScrollAnimmation";
 import { useEffect, useState, useRef } from "react";
 import Footer from "../../../Components/Footer";
 import Header from "../../../Components/Header";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function RegisterForm() {
   const [fullName, setName] = useState("");
@@ -20,14 +20,53 @@ export default function RegisterForm() {
   const [degError, setDegError] = useState("");
   const [pass2Error, setPass2Error] = useState("");
   const [pass1Error, setPass1rror] = useState("");
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   // New states for uploaded PDFs
   const [bmcLetter50, setDeclarationForm] = useState(null);
   const [bmcLetter, setBlankForm] = useState(null);
-  const [isUploadComplete, setIsUploadComplete] = useState(false);
 
   const form = useRef();
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const ec = searchParams.get("ec");
+  useEffect(() => {
+    const validateEmployeeId = async () => {
+      try {
+        const res = await fetch("/api/validateMember", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ employee_id: ec }), // Send the `ec` query param to the API
+        });
+  
+        const data = await res.json();
+        console.log(data.message, "before if")
+        if (data.message == "true") {
+          setIsAuthorized(true); // Set authorized if vaid
+        } else {
+          setIsAuthorized(false); // Unauthorized if invalid
+        }
+      } catch (error) {
+        setError("Failed to validate the employee code. Please try again.");
+        setIsAuthorized(false);
+      }
+    };
+  
+    if (ec) {
+      validateEmployeeId();
+    } else {
+      setIsAuthorized(false);
+    }
+  }, [ec]);
+  
+  // Track changes to isAuthorized to log the correct value after it's updated
+  useEffect(() => {
+    console.log("isAuthorized changed to: ", isAuthorized);
+  }, [isAuthorized]);
+  
 
   const ChangeName = (e) => {
     const Name = e.target.value;
@@ -36,7 +75,6 @@ export default function RegisterForm() {
 
     if (reg.test(Name)) {
       setNameError("");
-      setName(Name);
     } else if (!reg.test(Name)) {
       setNameError("Only Alphabets are Allowed");
     }
@@ -52,7 +90,6 @@ export default function RegisterForm() {
 
     if (reg.test(Email)) {
       setEmailError("");
-      setEmail(Email);
     } else if (!reg.test(Email)) {
       setEmailError("Invalid Email Id");
     }
@@ -68,7 +105,6 @@ export default function RegisterForm() {
 
     if (reg.test(Number)) {
       setNumberError("");
-      setNumber(Number);
     } else if (!reg.test(Number)) {
       setNumberError("Number should be 10 Digits");
     }
@@ -84,16 +120,16 @@ export default function RegisterForm() {
 
     if (reg.test(Deg)) {
       setDegError("");
-      setDesignation(Deg);
     }
     if (Deg.trim() === "") {
       setDegError("Designation is Required");
     }
   };
-  const ChangeId =(e)=>{
+
+  const ChangeId = (e) => {
     const Id = e.target.value;
-    setEmployee_id(Id)
-  }
+    setEmployee_id(Id);
+  };
 
   const ChangePass1 = (e) => {
     const Pass1 = e.target.value;
@@ -102,7 +138,6 @@ export default function RegisterForm() {
 
     if (reg.test(Pass1)) {
       setPass1rror("");
-      setPassword(Pass1);
     }
     if (Pass1.trim() === "") {
       setPass1rror("Password is Required");
@@ -116,10 +151,32 @@ export default function RegisterForm() {
 
     if (reg.test(Pass2)) {
       setPass2Error("");
-      setConfirmPassword(Pass2);
     }
     if (Pass2.trim() === "") {
       setPass2Error("Password is Required");
+    }
+  };
+
+  const validateEmployeeId = async () => {
+    try {
+      const res = await fetch("/api/validateMember", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ employee_id }),
+      });
+
+      const data = await res.json();
+      if (data.message === "true") {
+        return true; // Valid employee code
+      } else {
+        setError("Invalid Employee Code");
+        return false; // Invalid employee code
+      }
+    } catch (error) {
+      setError("Failed to validate the employee code. Please try again.");
+      return false; // Error during validation
     }
   };
 
@@ -137,6 +194,11 @@ export default function RegisterForm() {
       return;
     }
 
+    const isEmployeeIdValid = await validateEmployeeId();
+    if (!isEmployeeIdValid) {
+      return; // Exit if employee code is invalid
+    }
+
     try {
       const formData = new FormData();
       formData.append("fullName", fullName);
@@ -147,15 +209,15 @@ export default function RegisterForm() {
       formData.append("password", password);
       formData.append("bmcLetter50", bmcLetter50);
       formData.append("bmcLetter", bmcLetter);
-      const res = await fetch("/api/memberReg", {
 
+      const res = await fetch("/api/memberReg", {
         method: "POST",
         body: formData,
         headers: {
           authorization: process.env.NEXT_PUBLIC_API_KEY,
         },
       });
-      console.log(formData)
+
       if (res.ok) {
         // Reset form on successful registration
         setName("");
@@ -206,148 +268,168 @@ export default function RegisterForm() {
   return (
     <>
       <Header />
-      <main>
+      {isAuthorized ? (
+        // If authorized, show the registration form
+        <main>
+          <section className="h-44 bg-[#232323] flex justify-center items-center flex-col text-white">
+            <h1 className="text-5xl p-3">Register</h1>
+          </section>
+          <section className="flex justify-center mt-7 mb-7 items-center min-h-screen hidden1 flex-col">
+            <form
+              onSubmit={handleSubmit}
+              ref={form}
+              className="bg-white p-6 rounded-lg shadow-md w-full max-w-md"
+            >
+              <h2 className="text-2xl font-bold mb-6 text-center">
+                Member Register
+              </h2>
+
+              {/* Form fields */}
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">Full Name</label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={fullName}
+                  onChange={ChangeName}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
+                  required
+                />
+                {nameError && <p className="text-red-500 mb-4">{nameError}</p>}
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={ChangeEmail}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
+                  required
+                />
+                {emailError && (
+                  <p className="text-red-500 mb-4">{emailError}</p>
+                )}
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">
+                  Employee Code
+                </label>
+                <input
+                  type="text"
+                  name="employee_id"
+                  value={employee_id}
+                  onChange={ChangeId}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">
+                  Contact Number
+                </label>
+                <input
+                  type="tel"
+                  name="contactNumber"
+                  value={contactNumber}
+                  onChange={ChangeNumber}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
+                  required
+                />
+                {numberError && (
+                  <p className="text-red-500 mb-4">{numberError}</p>
+                )}
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">Designation</label>
+                <input
+                  type="text"
+                  name="designation"
+                  value={designation}
+                  onChange={ChangeDeg}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
+                  required
+                />
+                {degError && <p className="text-red-500 mb-4">{degError}</p>}
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={ChangePass1}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
+                  required
+                />
+                {pass1Error && (
+                  <p className="text-red-500 mb-4">{pass1Error}</p>
+                )}
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={ChangePass2}
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
+                  required
+                />
+                {pass2Error && (
+                  <p className="text-red-500 mb-4">{pass2Error}</p>
+                )}
+              </div>
+
+              {/* Upload section */}
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">
+                  Upload Declaration Form
+                </label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileUpload(e, setDeclarationForm)}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 mb-2">
+                  Upload Blank Form
+                </label>
+                <input
+                  type="file"
+                  onChange={(e) => handleFileUpload(e, setBlankForm)}
+                  required
+                />
+              </div>
+
+              {error && <p className="text-red-500 mb-4">{error}</p>}
+
+              {/* Submit button */}
+              <button
+                type="submit"
+                className={`w-full py-2 px-4 bg-[#C72625] text-white rounded-lg hover:bg-[#d12b2b] focus:outline-none focus:ring-2 focus:ring-[#C72625]`}
+              >
+                Register
+              </button>
+            </form>
+          </section>
+        </main>
+      ) : (
+        <>
         <section className="h-44 bg-[#232323] flex justify-center items-center flex-col text-white">
           <h1 className="text-5xl p-3">Register</h1>
         </section>
-        <section className="flex justify-center mt-7 mb-7 items-center min-h-screen hidden1 flex-col">
-          <form onSubmit={handleSubmit} ref={form} className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-6 text-center">Member Register</h2>
-
-            {/* Form fields */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Full Name</label>
-              <input
-                type="text"
-                name="fullName"
-                value={fullName}
-                onChange={ChangeName}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
-                required
-              />
-              {nameError && <p className="text-red-500 mb-4">{nameError}</p>}
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={ChangeEmail}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
-                required
-              />
-              {emailError && <p className="text-red-500 mb-4">{emailError}</p>}
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Employee Code</label>
-              <input
-                type="number"
-                name="employee_id"
-                value={employee_id}
-                onChange={ChangeId}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
-                required
-              />
-              {emailError && <p className="text-red-500 mb-4">{emailError}</p>}
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Contact Number</label>
-              <input
-                type="number"
-                name="contactNumber"
-                value={contactNumber}
-                onChange={ChangeNumber}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
-                required
-              />
-              {numberError && <p className="text-red-500 mb-4">{numberError}</p>}
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Designation</label>
-              <input
-                type="text"
-                name="designation"
-                value={designation}
-                onChange={ChangeDeg}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
-                required
-              />
-              {degError && <p className="text-red-500 mb-4">{degError}</p>}
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={ChangePass1}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
-                required
-              />
-              {pass1Error && <p className="text-red-500 mb-4">{pass1Error}</p>}
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={ChangePass2}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C72625]"
-                required
-              />
-              {pass2Error && <p className="text-red-500 mb-4">{pass2Error}</p>}
-            </div>
-
-            {/* PDF download buttons */}
-            <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Download This Form</label>
-              <div className="flex justify-between">
-                <a href="/assets/form/union_form.pdf" download className="bg-blue-500 text-white py-2 px-4 rounded-lg">
-                  Union form
-                </a>
-                
-                <a href="/assets/form/union50_form.pdf" download className="bg-blue-500 text-white py-2 px-4 rounded-lg">
-                  Union 50 form
-                </a>
-              </div>
-            </div>
-
-            {/* File upload fields */}
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Upload Union Form</label>
-              <input
-                type="file"
-                onChange={(e) => handleFileUpload(e, setBlankForm)}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none"
-                accept=".pdf"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 mb-2">Upload Union 50 form</label>
-              <input
-                type="file"
-                onChange={(e) => handleFileUpload(e, setDeclarationForm)}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none"
-                accept=".pdf"
-                required
-              />
-            </div>
-
-            {error && <p className="text-red-500 mb-4">{error}</p>}
-
-            {/* Submit button */}
-            <button
-              type="submit"
-              className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-[#C72625]"
-            >
-              Register
-            </button>
-          </form>
-        </section>
-      </main>
+        <div>
+          <p className="text-xl h-[50vh] flex justify-center items-center">
+            You need EC number to acess this page
+          </p>
+        </div>
+        </>
+      )}
       <Footer />
     </>
   );

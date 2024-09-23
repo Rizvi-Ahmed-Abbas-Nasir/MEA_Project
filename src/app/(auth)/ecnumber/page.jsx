@@ -23,10 +23,9 @@ function Page() {
       });
 
       const data = await res.json();
-      console.log(data)
       if (data.message == "true") {
         // Navigate to the register page if the employee code is valid
-        router.push("/register");
+        router.push(`/register?ec=${employee_id}`);
       } else {
         setError("Invalid Employee Code");
       }
