@@ -27,8 +27,8 @@ export async function GET(req) {
 
     // Set the headers for downloading the file
     const headers = new Headers();
-    headers.set('Content-Type', 'application/pdf'); // Change if needed
-    headers.set('Content-Disposition', `attachment; filename="${fileName}"`);
+    headers.set('Content-Type', 'application/pdf'); 
+    // headers.set('Content-Disposition', `attachment; filename="${fileName}"`);
 
     // Return a new Response and stream the file
     return new Response(fileStream, { headers });
