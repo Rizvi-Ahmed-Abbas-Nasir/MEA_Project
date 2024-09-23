@@ -35,6 +35,9 @@ export async function POST(req) {
       designation,
       password,
       isApproved,
+      bmcLetter,
+      bmcLetter50,
+      employee_id,
       Role,
     } = result[0];
 
@@ -43,8 +46,8 @@ export async function POST(req) {
     if (status?.changedRows == 1) {
       //adding to the members table
       const isAdded = await executeQuery({
-        query: `INSERT INTO members (fullName, email, contactNumber, designation, password, Role) VALUES(?,?,?,?,?,?)`,
-        values: [fullName, email, contactNumber, designation, password, Role],
+        query: `INSERT INTO members (fullName, email, contactNumber, designation, password,bmcLetter,bmcLetter50,employee_id, Role) VALUES(?,?,?,?,?,?,?,?,?)`,
+        values: [fullName, email, contactNumber, designation, password,bmcLetter,bmcLetter50,employee_id, Role],
       });
 
       return NextResponse.json(
