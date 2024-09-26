@@ -48,7 +48,7 @@ export default function RegisterForm() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
       <Header />
-      <div className="flex h-[100vh] flex-col justify-center items-center flex-grow">
+      <div className="flex h-[70vh] justify-center flex-col items-center flex-grow">
         <div className="relative bg-white p-10 rounded-xl shadow-lg w-full max-w-md">
           {/* Profile Icon */}
           <div className="absolute top-[-50px] left-[50%] translate-x-[-50%] bg-gradient-to-br from-red-500 to-red-500 w-20 h-20 rounded-full flex justify-center items-center">

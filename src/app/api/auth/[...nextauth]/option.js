@@ -74,7 +74,8 @@ export const authOptions = {
       } 
       return token;
     }
-  }
+  },
+  debug: process.env.NODE_ENV === 'development', // Enable debug mode in development
 };
 
 export default (req, res) => NextAuth(req, res, authOptions);

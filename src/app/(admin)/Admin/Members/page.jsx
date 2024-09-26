@@ -100,10 +100,10 @@ export default function Page() {
 
   return (
     <>
-      {session?.user?.role === "admin" ? (
+      {/* {session?.user?.role === "admin" ? ( */}
         <div className="flex  w-full xl:flex-row flex-col">
           <NAV />
-          <div className="flex flex-col w-full px-6 py-6 gap-6 h-full  bg-gray-100">
+          <div className="flex h-[100vh] flex-col w-full px-6 py-6 gap-6  bg-gray-100">
             <h1 className="text-4xl font-bold text-gray-800">Members</h1>
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
@@ -187,9 +187,9 @@ export default function Page() {
             </div>
           )}
         </div>
-       ) : (
+       {/* ) : (
         <Unauthorized />
-      )} 
+      )}  */}
     </>
   );
 }
