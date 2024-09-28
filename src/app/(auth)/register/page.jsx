@@ -145,7 +145,7 @@ export default function RegisterForm() {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
       <Header />
       {isAuthorized ? (
-        <div className="h-[200vh] flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
+        <div className="h-[160vh] flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
           <div className="flex h-[100vh] flex-col justify-center items-center flex-grow">
             <div className="relative bg-white p-10 rounded-xl shadow-lg w-[50%]"> {/* Increased max-w-md to max-w-lg */}
               {/* Profile icon */}

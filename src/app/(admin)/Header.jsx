@@ -12,9 +12,9 @@ const AdminHeader = () => {
   };
 
   return (
-    <div className="h-[100vh] bg-red-900 text-white">
+    <div className="h-[100vh] w-full bg-red-900 text-white">
       {/* Sidebar */}
-      <aside className="w-64 h-full bg-red-800  flex-col hidden xl:flex" >
+      <div className="xl:w-[100%] h-full bg-red-800  flex-col hidden xl:flex" >
         {/* <div className="flex items-center justify-center h-20 border-b border-gray-700">
           <div className="text-center">
             <img
@@ -28,7 +28,6 @@ const AdminHeader = () => {
         </div> */}
 
         <nav className="flex-grow px-4 py-6">
-          <h3 className="text-sm uppercase text-white">Main Menu</h3>
           <ul className="space-y-2 mt-4">
             <li>
               <Link href="/" className="flex items-center p-2 rounded-lg hover:bg-red-700">
@@ -61,10 +60,7 @@ const AdminHeader = () => {
                 <span className="font-medium">Event</span>
               </Link>
             </li>
-          </ul>
-
-          <h3 className="text-sm uppercase text-gray-400 mt-6">Others</h3>
-          <ul className="space-y-2 mt-4">
+          </ul>          <ul className="space-y-2 mt-4">
             <li>
               <Link href="Admin/gallery" className="flex items-center p-2 rounded-lg hover:bg-red-700">
                 <FaClipboard className="mr-2" />
@@ -77,16 +73,11 @@ const AdminHeader = () => {
                 <span className="font-medium">Honorary Members</span>
               </Link>
             </li>
-            <li>
-              <Link href="/settings" className="flex items-center p-2 rounded-lg hover:bg-red-700">
-                <FaClipboard className="mr-2" />
-                <span className="font-medium">Settings</span>
-              </Link>
-            </li>
+            
           </ul>
         </nav>
         
-      </aside>
+      </div>
     {/* Hamburger Menu */}
     <div className="relative flex items-center h-[10vh] justify-center w-full z-50  lg:hidden">
   <div className="flex flex-col justify-center items-center cursor-pointer" onClick={toggleMenu}>
