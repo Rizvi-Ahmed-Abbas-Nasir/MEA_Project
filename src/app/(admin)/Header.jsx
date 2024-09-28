@@ -45,7 +45,6 @@ const AdminHeader = () => {
               <Link href="/Admin/member_req" className="flex items-center p-2 rounded-lg hover:bg-red-700">
                 <FaUser className="mr-2" />
                 <span className="font-medium">Member's Request</span>
-                <span className="absolute right-4 bg-red-600 text-xs text-white px-2 py-1 rounded-full">35</span>
               </Link>
             </li>
             <li>
@@ -55,14 +54,14 @@ const AdminHeader = () => {
               </Link>
             </li>
             <li>
-              <Link href="/Admin/Events" className="flex items-center p-2 rounded-lg bg-red-700 hover:bg-red-600">
+              <Link href="/Admin/Events" className="flex items-center p-2 rounded-lg  hover:bg-red-600">
                 <FaCalendar className="mr-2" />
                 <span className="font-medium">Event</span>
               </Link>
             </li>
-          </ul>          <ul className="space-y-2 mt-4">
+          </ul>          <ul className="space-y-2 mt-2">
             <li>
-              <Link href="Admin/gallery" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+              <Link href="/Admin/gallery" className="flex items-center p-2 rounded-lg hover:bg-red-700">
                 <FaClipboard className="mr-2" />
                 <span className="font-medium">Gallery</span>
               </Link>

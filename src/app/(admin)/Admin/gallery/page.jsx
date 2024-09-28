@@ -108,9 +108,9 @@ export default function GalleryPage() {
   }
 
   return (
-    <div className="flex w-full h-screen flex-row bg-gray-100">
+    <div className="flex  w-full xl:flex-row flex-col">
       <NAV />
-      <main className="flex flex-col w-full md:w-4/5 lg:w-3/4 xl:w-2/3 gap-8 p-8 overflow-y-auto">
+      <main className="flex h-[100vh] flex-col w-full px-6 py-6 gap-6  bg-gray-100">
         <h1 className="text-3xl font-bold text-gray-800">Gallery</h1>
         
         <form

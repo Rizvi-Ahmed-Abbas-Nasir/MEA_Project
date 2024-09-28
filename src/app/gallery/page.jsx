@@ -34,28 +34,30 @@ export default function Page() {
           <p className="text-lg p-3">Home / Gallery</p>
         </section>
         <section className="w-full flex flex-col items-center flex-grow">
-          <div className="w-[90%] flex flex-col">
-            <div className="w-[90%] mt-10">
-              <h1 className="text-[2.5rem]">Gallery</h1>
-            </div>
-            <div className=" flex flex-wrap m-10 gap-10">
-              {events.map((gallery) => (
-                <div
-                  key={gallery.imageId}
-                  className="relative w-full max-w-sm overflow-hidden shadow-lg cursor-pointer group"
-                >
-                  <Image
-                    className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-110"
-                    src={gallery.image}
-                    alt={gallery.title}
-                    width={400}
-                    height={300}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+  <div className="w-[90%] flex flex-col justify-start">
+    <div className="w-full mt-10 ">
+      <h1 className="text-3xl md:text-4xl lg:text-[2.5rem]">Gallery</h1>
+    </div>
+    <div className="flex flex-wrap m-4 md:m-10 gap-6 md:gap-10">
+      {events.map((gallery) => (
+        <div
+          key={gallery.imageId}
+          className="relative w-full max-w-[300px] sm:max-w-[400px] md:max-w-sm overflow-hidden shadow-lg cursor-pointer group"
+        >
+          <Image
+            className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-110"
+            src={gallery.image}
+            alt={gallery.title}
+            width={400}
+            height={300}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
       </main>
       <Footer />
     </>

@@ -116,15 +116,15 @@ export default function ImageUploadForm() {
     }
   };
 
-  // Unauthorized access
+ // Unauthorized access
   if (session?.user?.role !== "admin") {
     return <div className="text-center text-red-500">Unauthorized access.</div>;
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-full h-screen bg-gray-100">
+    <div className="flex  w-full xl:flex-row flex-col">
       <NAV />
-      <div className="flex flex-col w-full md:w-4/5 lg:w-3/4 xl:w-2/3 gap-8 p-8 overflow-y-auto">
+      <div className="flex h-[100vh] flex-col w-full px-6 py-6 gap-6  bg-gray-100">
         <h1 className="text-3xl font-bold text-gray-800 text-center md:text-left">Upload Event Image</h1>
         
         <form
@@ -174,7 +174,7 @@ export default function ImageUploadForm() {
               Image:
               <br />
               <input
-                className="mt-1 px-4 py-2 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 px-2 w-[93%] xl:w-[100%] xl:px-4 py-2 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="file"
                 onChange={handleFileChange}
                 accept="image/*"
