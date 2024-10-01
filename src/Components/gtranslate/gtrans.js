@@ -4,6 +4,28 @@ import Head from 'next/head';
 const GoogleTranslate = () => {
   useEffect(() => {
     const scriptId = 'google-translate-script';
+    const elementId = 'google_translate_element';
+
+    // Function to initialize Google Translate
+    const initializeGoogleTranslate = () => {
+      // Use setTimeout to give some time for the google object to be ready
+      setTimeout(() => {
+        if (window.google && window.google.translate) {
+          new window.google.translate.TranslateElement(
+            {
+              pageLanguage: 'en',
+              includedLanguages: 'en,mr',
+              layout: window.google.translate.TranslateElement.InlineLayout 
+                      ? window.google.translate.TranslateElement.InlineLayout.HORIZONTAL 
+                      : null,
+            },
+            elementId
+          );
+        } else {
+          console.error('Google Translate not loaded yet.');
+        }
+      }, 1000); // Wait 1 second before trying to access google.translate
+    };
 
     // Check if the script is already added
     if (!document.getElementById(scriptId)) {
@@ -13,19 +35,23 @@ const GoogleTranslate = () => {
       script.async = true;
       document.body.appendChild(script);
 
-      // Initialize Google Translate Element
-      window.googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: 'en',
-            includedLanguages: 'en,mr',
-            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
-          },
-          'google_translate_element'
-        );
-      };
+      // Define the callback function for the Google Translate script
+      window.googleTranslateElementInit = initializeGoogleTranslate;
+
+      // Add event listener to detect when the script is loaded
+      script.addEventListener('load', initializeGoogleTranslate);
+    } else {
+      // If the script is already loaded, initialize directly
+      initializeGoogleTranslate();
     }
 
+    // Cleanup function
+    return () => {
+      const translateElement = document.getElementById(elementId);
+      if (translateElement) {
+        translateElement.innerHTML = ''; // Clear translation UI
+      }
+    };
   }, []);
 
   return (
