@@ -175,7 +175,7 @@ export default function RegisterForm() {
                       type="text"
                       name="fullName"
                       value={fullName}
-                      onChange={(e) => setFirstName(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       required
                     />

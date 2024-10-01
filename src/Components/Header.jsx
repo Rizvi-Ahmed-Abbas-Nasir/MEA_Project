@@ -40,7 +40,7 @@ export default function Header() {
   };
 
   return (
-    <div className="HeaderContainer shadow-lg w-full flex flex-col text-white bg-white">
+    <div className="HeaderContainer shadow-lg w-full flex flex-col text-white bg-white md:mt-10">
       <div className="NavContainer hidden w-full h-[4.2vh] bg-[#c72626] justify-between justify-items-center items-center xl:flex ">
         <div className="flex justify-center pl-10">
           <h4 className="text-white text-[0.9rem] font-bold ">
@@ -79,7 +79,7 @@ export default function Header() {
           </div>
           <div className="justify-center h-[12vh] sm:flex items-center gap-8 text-black w-[90%] text-[1rem] font-medium xl:flex">
             <Link href={"/"}>
-              <h2 className="cursor-pointer hidden xl:flex">Home</h2>
+              <h2 className="cursor-pointer hidden xl:flex">Home Page</h2>
             </Link>
             <div className="relative group h-13vh items-center hidden-xl">
               <h3 className="flex cursor-pointer hover-text-red items-center">
