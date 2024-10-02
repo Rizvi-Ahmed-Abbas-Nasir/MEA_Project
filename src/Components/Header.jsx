@@ -40,7 +40,7 @@ export default function Header() {
   };
 
   return (
-    <div className="HeaderContainer shadow-lg w-full flex flex-col text-white bg-white md:mt-10">
+    <div className="HeaderContainer shadow-lg w-full flex flex-col text-white bg-white ">
       <div className="NavContainer hidden w-full h-[4.2vh] bg-[#c72626] justify-between justify-items-center items-center xl:flex ">
         <div className="flex justify-center pl-10">
           <h4 className="text-white text-[0.9rem] font-bold ">
@@ -181,7 +181,7 @@ export default function Header() {
         <div className={active ? "Sub-SideNav-on-click" : "Sub-SideNav "}>
           <div className="menuItems">
             <Link href={"/"}>
-              <h4>Home</h4>
+              <h4>HomePage</h4>
             </Link>
             <div className="relative group items-center">
               <h3 className="flex cursor-pointer hover-text-red items-center">

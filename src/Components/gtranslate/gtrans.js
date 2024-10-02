@@ -35,14 +35,16 @@ const GoogleTranslate = () => {
       script.async = true;
       document.body.appendChild(script);
 
-      // Define the callback function for the Google Translate script
-      window.googleTranslateElementInit = initializeGoogleTranslate;
-
-      // Add event listener to detect when the script is loaded
-      script.addEventListener('load', initializeGoogleTranslate);
-    } else {
-      // If the script is already loaded, initialize directly
-      initializeGoogleTranslate();
+      window.googleTranslateElementInit = () => {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,mr',
+            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+          },
+          'google_translate_element'
+        );
+      };
     }
 
     // Cleanup function

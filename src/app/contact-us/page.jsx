@@ -73,7 +73,7 @@ export default function Page() {
       <main>
         <section className="h-44 bg-[#232323] flex justify-center items-center flex-col text-white">
           <h1 className="text-5xl p-3">Contact Us</h1>
-          <p className="text-lg p-3">Home / Contact Us</p>
+          <p className="text-lg p-3">HomePage / Contact Us</p>
         </section>
         <section className="md:mx-32">
           <section className="flex md:flex-row flex-col w-full justify-center items-center my-20">

@@ -38,7 +38,7 @@ export default function Page() {
             <Header />
             <section className="h-44 bg-[#232323] flex justify-center items-center flex-col text-white">
                 <h1 className="text-5xl p-3">Members</h1>
-                <p className="text-lg p-3">Home / Members</p>
+                <p className="text-lg p-3">HomePage / Members</p>
             </section>
             <section className="py-12 bg-gray-100 min-h-screen">
                 <div className="container mx-auto px-4">

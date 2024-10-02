@@ -25,7 +25,7 @@ export default function Footer() {
                 <h1>Quick Links</h1>
                 <br />  
                 <ul className="text-sm text-lightText flex flex-col">
-                    <Link href={'/'} className="p-2">Home</Link>
+                    <Link href={'/'} className="p-2">HomePage</Link>
                     <Link href={'/background-of-mea'} className="p-2">Background of MEA</Link>
                     <Link href={'/contact-us'} className="p-2">Contact us</Link>
                     <Link href={'/register'} className="p-2">Members Registration</Link>
@@ -36,7 +36,7 @@ export default function Footer() {
                 <h1>Useful Links</h1>
                 <br />
                 <ul className="text-sm text-lightText flex flex-col">
-                    <Link href={'/'} className="p-2">Home</Link>
+                    <Link href={'/'} className="p-2">HomePage</Link>
                     <Link href={'/background-of-mea'} className="p-2">Background of MEA</Link>
                     <Link href={'/contact-us'} className="p-2">Contact us</Link>
                     <Link href={'/recognition-and-affiliation'} className="p-2">Members Registration</Link>

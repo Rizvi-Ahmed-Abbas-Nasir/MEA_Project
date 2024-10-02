@@ -48,7 +48,7 @@ export default function Page() {
       <main className="min-h-screen flex flex-col">
         <section className="h-44 bg-[#232323] flex justify-center items-center flex-col text-white">
           <h1 className="text-5xl p-3">Events</h1>
-          <p className="text-lg p-3">Home / Events</p>
+          <p className="text-lg p-3">HomePage / Events</p>
         </section>
         <section className="w-full flex flex-col items-center flex-grow">
   <div className="w-[90%] flex flex-col justify-start">

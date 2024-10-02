@@ -20,7 +20,7 @@ const AdminHeader = () => {
             <li>
               <Link href="/" className="flex items-center p-2 rounded-lg hover:bg-red-700">
                 <FaHome className="mr-2" />
-                <span className="font-medium text-sm md:text-[.6rem] lg:text-lg xl:text-xl">Home</span>
+                <span className="font-medium text-sm md:text-[.6rem] lg:text-lg xl:text-xl">HomePage</span>
               </Link>
             </li>
             <li>
@@ -47,8 +47,6 @@ const AdminHeader = () => {
                 <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl">Event</span>
               </Link>
             </li>
-          </ul>
-          <ul className="space-y-2 mt-2">
             <li>
               <Link href="/Admin/gallery" className="flex items-center p-2 rounded-lg hover:bg-red-700">
                 <FaClipboard className="mr-2" />
@@ -89,7 +87,7 @@ const AdminHeader = () => {
           <ul className="flex flex-col items-center gap-4 py-4">
             <li>
               <Link href="/" className="text-sm md:text-base lg:text-lg xl:text-xl">
-                Home
+                HomePage
               </Link>
             </li>
             <li>
