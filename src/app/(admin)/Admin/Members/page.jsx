@@ -12,31 +12,31 @@ export default function Page() {
   const [currentFileName, setCurrentFileName] = useState(""); // State for current file name
 
   useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_HOST}/api/admin/members`,
-          {
+    if (typeof window !== "undefined") {
+      const fetchMembers = async () => {
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/members`, {
             method: "GET",
             headers: {
               authorization: process.env.NEXT_PUBLIC_API_KEY,
             },
+          });
+  
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
           }
-        );
-
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
+  
+          const data = await response.json();
+          setMembers(data);
+        } catch (error) {
+          console.error("Error fetching members:", error);
         }
-
-        const data = await response.json();
-        setMembers(data);
-      } catch (error) {
-        console.error("Error fetching members:", error);
-      }
-    };
-
-    fetchMembers();
+      };
+  
+      fetchMembers();
+    }
   }, []);
+  
 
   const deleteMember = async (memberId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this member?");
@@ -99,9 +99,9 @@ export default function Page() {
   };
 
   // Unauthorized access
-  if (session?.user?.role !== "admin") {
-    return <div className="text-center text-red-500">Unauthorized access.</div>;
-  }
+  // if (session?.user?.role !== "admin") {
+  //   return <div className="text-center text-red-500">Unauthorized access.</div>;
+  // }
   return (
     <>
         <div className="flex  w-full xl:flex-row flex-col">

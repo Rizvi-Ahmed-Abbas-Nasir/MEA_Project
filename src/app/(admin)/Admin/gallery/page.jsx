@@ -103,9 +103,9 @@ export default function GalleryPage() {
   };
 
   // Unauthorized access
-  if (session?.user?.role !== "admin") {
-    return <Unauthorized />;
-  }
+  // if (session?.user?.role !== "admin") {
+  //   return <Unauthorized />;
+  // }
 
   return (
     <div className="flex  w-full xl:flex-row flex-col">

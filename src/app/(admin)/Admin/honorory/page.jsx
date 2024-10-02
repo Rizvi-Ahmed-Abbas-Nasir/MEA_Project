@@ -11,6 +11,7 @@ export default function HonoraryManagementPage() {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
 
   // Fetch honorary members
   const fetchHonoraryMembers = async () => {
@@ -25,6 +26,8 @@ export default function HonoraryManagementPage() {
       setHonoraryList(result);
     } catch (error) {
       setStatusMessage(error.message);
+    } finally {
+      setIsLoading(false); // Set loading to false after fetching
     }
   };
 
@@ -93,14 +96,15 @@ export default function HonoraryManagementPage() {
       setStatusMessage(error.message);
     }
   };
+
   if (session?.user?.role !== "admin") {
     return <Unauthorized />;
   }
 
   return (
-    <div className="flex  w-full xl:flex-row flex-col">
+    <div className="flex w-full xl:flex-row flex-col">
       <NAV />
-      <div className="flex h-[100vh] flex-col w-full px-6 py-6 gap-6  bg-gray-100">
+      <div className="flex h-[100vh] flex-col w-full px-6 py-6 gap-6 bg-gray-100">
         <h1 className="text-3xl font-bold mb-4">Honorary Management</h1>
         <form
           onSubmit={handleSubmit}
@@ -152,7 +156,9 @@ export default function HonoraryManagementPage() {
         <h2 className="text-2xl font-semibold mb-4">
           Existing Honorary Members
         </h2>
-        {honoraryList.length > 0 ? (
+        {isLoading ? (
+          <p className="text-gray-600">Loading honorary members...</p>
+        ) : honoraryList.length > 0 ? (
           <ul className="bg-white shadow-md rounded-lg p-6">
             {honoraryList.map((member) => (
               <li

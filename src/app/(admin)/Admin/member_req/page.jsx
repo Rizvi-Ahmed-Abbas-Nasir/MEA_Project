@@ -10,31 +10,34 @@ export default function Page() {
   const [pdfFiles, setPdfFiles] = useState({});
 
   useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_HOST}/api/admin`,
-          {
-            method: "GET",
-            headers: {
-              authorization: process.env.NEXT_PUBLIC_API_KEY,
-            },
+    if (typeof window !== "undefined") {
+      const fetchMembers = async () => {
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_HOST}/api/admin`,
+            {
+              method: "GET",
+              headers: {
+                authorization: process.env.NEXT_PUBLIC_API_KEY,
+              },
+            }
+          );
+  
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
           }
-        );
-
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
+  
+          const data = await response.json();
+          setMembers(data);
+        } catch (error) {
+          console.error("Error fetching members:", error);
         }
-
-        const data = await response.json();
-        setMembers(data);
-      } catch (error) {
-        console.error("Error fetching members:", error);
-      }
-    };
-
-    fetchMembers();
+      };
+  
+      fetchMembers();
+    }
   }, []);
+  
 
   const handleFetchPdf = async (fileName, formType) => {
     try {
