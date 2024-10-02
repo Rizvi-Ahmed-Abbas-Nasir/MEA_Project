@@ -94,11 +94,11 @@ export default function Header() {
                     Background of MEA
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="#" className="dropdown-link">
                     Objectives
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     href="recognition-and-affiliation"
@@ -242,11 +242,11 @@ export default function Header() {
                     Background of MEA
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="objectives" className="dropdown-link">
                     Objectives
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     href="recognition-and-affiliation"
@@ -274,6 +274,12 @@ export default function Header() {
                   </Link>
                 </li>
               </ul>
+              <Link href={"/events"}>
+              <h3 className="cursor-pointer hidden xl:flex">Events</h3>
+            </Link>
+            <Link href={"/gallery"}>
+              <h3 className="cursor-pointer hidden xl:flex">Gallery</h3>
+            </Link>
             </div>
             <Link href={"/contact-us"}>
               <h4>Contact us</h4>

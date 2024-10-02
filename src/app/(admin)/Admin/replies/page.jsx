@@ -35,47 +35,48 @@ export default function Page() {
     fetchReplies();
   }, []);
 
+  // Unauthorized access
+  if (session?.user?.role !== "admin") {
+    return <div className="text-center text-red-500">Unauthorized access.</div>;
+  }
   return (
     <>
-      {session?.user?.role === "admin" ? (
-        <div className="flex w-full h-screen flex-row">
-          <NAV />
-          <div className="flex flex-col w-full gap-6 h-screen items-center overflow-y-auto p-6 bg-gray-100">
-            <h1 className="text-4xl font-bold text-gray-800">Replies</h1>
-            <div className="w-full max-w-4xl space-y-4">
-              {replies.map((reply) => (
-                <div
-                  key={reply.replyId}
-                  className="bg-white shadow-md p-6 rounded-lg border border-gray-200"
-                >
-                  <p className="text-lg text-gray-700">
-                    <strong className="font-semibold">Name:</strong>{" "}
-                    {reply.fullName}
-                  </p>
-                  <p className="text-lg text-gray-700">
-                    <strong className="font-semibold">Email:</strong>{" "}
-                    {reply.email}
-                  </p>
-                  <p className="text-lg text-gray-700">
-                    <strong className="font-semibold">Contact Number:</strong>{" "}
-                    {reply.contactNumber}
-                  </p>
-                  <p className="text-lg text-gray-700">
-                    <strong className="font-semibold">Address:</strong>{" "}
-                    {reply.address}
-                  </p>
-                  <p className="text-lg text-gray-700">
-                    <strong className="font-semibold">Message:</strong>{" "}
-                    {reply.message}
-                  </p>
-                </div>
-              ))}
-            </div>
+      <div className="flex w-full flex-col xl:flex-row">
+        <NAV />
+        <div className="flex flex-col h-[100vh] w-full gap-6 items-center overflow-y-auto p-4 bg-gray-100 sm:p-6">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center">Replies</h1>
+          <div className="w-full max-w-4xl space-y-4">
+            {replies.map((reply) => (
+              <div
+                key={reply.replyId}
+                className="bg-white shadow-md p-4 sm:p-6 rounded-lg border border-gray-200"
+              >
+                <p className="text-base sm:text-lg text-gray-700">
+                  <strong className="font-semibold">Name:</strong>{" "}
+                  {reply.fullName}
+                </p>
+                <p className="text-base sm:text-lg text-gray-700">
+                  <strong className="font-semibold">Email:</strong>{" "}
+                  {reply.email}
+                </p>
+                <p className="text-base sm:text-lg text-gray-700">
+                  <strong className="font-semibold">Contact Number:</strong>{" "}
+                  {reply.contactNumber}
+                </p>
+                <p className="text-base sm:text-lg text-gray-700">
+                  <strong className="font-semibold">Address:</strong>{" "}
+                  {reply.address}
+                </p>
+                <p className="text-base sm:text-lg text-gray-700">
+                  <strong className="font-semibold">Message:</strong>{" "}
+                  {reply.message}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
-      ) : (
-        <Unauthorized />
-      )}
+      </div>
+    
     </>
   );
 }

@@ -51,37 +51,40 @@ export default function Page() {
           <p className="text-lg p-3">Home / Events</p>
         </section>
         <section className="w-full flex flex-col items-center flex-grow">
-          <div className="w-[90%] flex flex-col">
-            <div className="w-[90%] mt-10">
-              <h1 className="text-[2.5rem]">Events</h1>
-            </div>
-            <div className="w-full min-h-fit flex flex-wrap md:m-10 gap-10">
-              {events.map((event) => (
-                <div
-                  key={event.eventId}
-                  className="relative w-full max-w-sm overflow-hidden shadow-lg cursor-pointer group hidden3"
-                >
-                  <Image
-                    className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-110"
-                    src={event.image}
-                    alt={event.title}
-                    width={400}
-                    height={300}
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-white transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                    <div className="text-center p-4">
-                      <p className="text-sm text-black mb-2">{event.date}</p>
-                      <h2 className="text-xl font-bold text-black">
-                        {event.title}
-                      </h2>
-                      <p className="text-lg text-black">{event.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+  <div className="w-[90%] flex flex-col justify-start">
+    <div className="w-full mt-10 "> {/* Change to w-full for full width */}
+      <h1 className="text-3xl md:text-4xl lg:text-5xl">Events</h1> {/* Responsive text sizes */}
+    </div>
+    <div className="w-full min-h-fit flex flex-wrap justify-center gap-6 md:gap-10 md:m-10"> {/* Center items and adjust gaps */}
+      {events.map((event) => (
+        <div
+          key={event.eventId}
+          className="relative w-full max-w-[300px] sm:max-w-[400px] md:max-w-sm overflow-hidden shadow-lg cursor-pointer group hidden3"
+        >
+          <Image
+            className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-110"
+            src={event.image}
+            alt={event.title}
+            width={400}
+            height={300}
+          />
+          <div className="absolute inset-0 flex items-center justify-center bg-white transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+            <div className="text-center p-4">
+              <p className="text-sm text-black mb-2">{event.date}</p>
+              <h2 className="text-lg md:text-xl font-bold text-black"> {/* Responsive text size */}
+                {event.title}
+              </h2>
+              <p className="text-base md:text-lg text-black"> {/* Responsive text size */}
+                {event.description}
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
         <Footer />
       </main>
     </>
