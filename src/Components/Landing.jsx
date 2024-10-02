@@ -92,7 +92,7 @@ export default function Landing() {
             <div className="w-full bg-white flex justify-center flex-col items-center gap-10 ">
                 <div className="w-[90%] h-[inherte] text-black flex items-center xl:justify-around xl:items-start gap-20 md:gap-10 xl:gap-5 flex-col xl:flex-row">
                     <div className=" w-[100%] xl:w-[35%] flex  justify-center flex-col xl:block hidden2 ">
-                        <h1 className={`${nunito.className} text-[2rem]  font-bold `}>WELCOME TO MUNCIPAL ENGINEERS ASSOCIATION</h1>
+                        <h1 className={`${nunito.className} text-[2rem]  font-bold `}>WELCOME TO MUNICIPAL ENGINEERS ASSOCIATION</h1>
                         <div className="w-[87%]">
                             <h5 className="mt-5 ">The struggles undertaken by the Municipal Engineers Association have yielded numerous results. For instance,
                                 promotion policies have been established, increases in salary, allowances, and service facilities have been achieved, and a decision was made to retain positions for degree-holding engineers.</h5>
