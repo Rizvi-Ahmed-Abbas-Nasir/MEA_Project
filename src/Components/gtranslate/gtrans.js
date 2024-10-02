@@ -4,6 +4,28 @@ import Head from 'next/head';
 const GoogleTranslate = () => {
   useEffect(() => {
     const scriptId = 'google-translate-script';
+    const elementId = 'google_translate_element';
+
+    // Function to initialize Google Translate
+    const initializeGoogleTranslate = () => {
+      // Use setTimeout to give some time for the google object to be ready
+      setTimeout(() => {
+        if (window.google && window.google.translate) {
+          new window.google.translate.TranslateElement(
+            {
+              pageLanguage: 'en',
+              includedLanguages: 'en,mr',
+              layout: window.google.translate.TranslateElement.InlineLayout 
+                      ? window.google.translate.TranslateElement.InlineLayout.HORIZONTAL 
+                      : null,
+            },
+            elementId
+          );
+        } else {
+          console.error('Google Translate not loaded yet.');
+        }
+      }, 1000); // Wait 1 second before trying to access google.translate
+    };
 
     // Check if the script is already added
     if (!document.getElementById(scriptId)) {
@@ -13,63 +35,22 @@ const GoogleTranslate = () => {
       script.async = true;
       document.body.appendChild(script);
 
-      // Initialize Google Translate Element
-      window.googleTranslateElementInit = () => {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: 'en',
-            includedLanguages: 'en,mr',
-            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
-          },
-          'google_translate_element'
-        );
+      // Define the callback function for the Google Translate script
+      window.googleTranslateElementInit = initializeGoogleTranslate;
 
-        // Automatically set language to Marathi after Google Translate initializes
-        setTimeout(() => {
-          const select = document.querySelector('.goog-te-combo');
-          if (select) {
-            select.value = 'mr';  // Set language to Marathi
-            select.dispatchEvent(new Event('change'));  // Trigger language change event
-          }
-        }, 1000); // Delay to allow the widget to fully load
-      };
+      // Add event listener to detect when the script is loaded
+      script.addEventListener('load', initializeGoogleTranslate);
+    } else {
+      // If the script is already loaded, initialize directly
+      initializeGoogleTranslate();
     }
 
-    // Hide Google Translate top banner and logo
-    const hideGoogleTranslateElements = () => {
-      const style = document.createElement('style');
-      style.innerHTML = `
-        /* Hides the Google Translate iframe banner at the top of the page */
-        
-        /* Prevents the page content from shifting down */
-        body {
-          top: 0px !important;
-        }
-        /* Hides the Google logo and text in the dropdown widget */
-        
-        .goog-te-gadget {
-          font-size: 0px;
-        }
-      `;
-      document.head.appendChild(style);
-    };
-
-    hideGoogleTranslateElements();
-
-    // Observe when the Google Translate toolbar is added to the DOM
-    const observer = new MutationObserver(() => {
-      const closeButton = document.querySelector('.skiptranslate .goog-te-gadget-simple .close-button');
-      if (closeButton) {
-        closeButton.click(); // Click the close button
-        observer.disconnect(); // Stop observing once the button is found and clicked
-      }
-    });
-
-    // Start observing the body for child additions
-    observer.observe(document.body, { childList: true, subtree: true });
-
+    // Cleanup function
     return () => {
-      observer.disconnect(); // Clean up the observer on component unmount
+      const translateElement = document.getElementById(elementId);
+      if (translateElement) {
+        translateElement.innerHTML = ''; // Clear translation UI
+      }
     };
   }, []);
 
