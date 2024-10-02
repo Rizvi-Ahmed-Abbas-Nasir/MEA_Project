@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import NAV from "../../Navbar";
+import Unauthorized from "../../Unauthorized";
 
 export default function ImageUploadForm() {
   const { data: session } = useSession();
@@ -12,25 +13,47 @@ export default function ImageUploadForm() {
   const [description, setDescription] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchImages = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/event`);
+        if (!response.ok) throw new Error("Failed to fetch images.");
+
+        const result = await response.json();
+        setImages(result);
+      } catch (error) {
+        setStatusMessage(error.message || "An error occurred while fetching images.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchImages();
+
+    return () => {
+      setImages([]);
+    };
   }, []);
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   const fetchImages = async () => {
+    setLoading(true);
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/event`);
       if (!response.ok) throw new Error("Failed to fetch images.");
-
       const result = await response.json();
       setImages(result);
     } catch (error) {
       setStatusMessage(error.message || "An error occurred while fetching images.");
+    } finally {
+      setLoading(false);
     }
-  };
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -49,16 +72,18 @@ export default function ImageUploadForm() {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/event`, {
         method: "POST",
-        headers: {
-          authorization: process.env.NEXT_PUBLIC_API_KEY,
-        },
+        headers: { authorization: process.env.NEXT_PUBLIC_API_KEY },
         body: formData,
       });
 
       if (!response.ok) throw new Error("Failed to upload image.");
 
       setStatusMessage("Image uploaded successfully.");
-      await fetchImages();
+      await fetchImages(); // Fetch images again after upload
+      setFile(null); // Clear file input
+      setTitle(""); // Clear title input
+      setDate(""); // Clear date input
+      setDescription(""); // Clear description input
     } catch (error) {
       setStatusMessage(error.message || "An error occurred while uploading the image.");
     }
@@ -73,7 +98,7 @@ export default function ImageUploadForm() {
 
       if (!response.ok) throw new Error("Failed to delete image.");
 
-      await fetchImages();
+      await fetchImages(); // Fetch images again after delete
     } catch (error) {
       setStatusMessage(error.message || "An error occurred while deleting the image.");
     }
@@ -82,7 +107,11 @@ export default function ImageUploadForm() {
   if (!session) return <div>Loading...</div>;
 
   if (session?.user?.role !== "admin") {
-    return <div className="text-center text-red-500">Unauthorized access.</div>;
+    return (
+      <div className="text-center text-red-500">
+        <Unauthorized />
+      </div>
+    );
   }
 
   return (
@@ -135,24 +164,30 @@ export default function ImageUploadForm() {
           </button>
         </form>
         {statusMessage && <p className="mt-4 text-center">{statusMessage}</p>}
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Uploaded Images</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {images.length > 0 ? (
-              images.map((image) => (
-                <div key={image.eventId} className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
-                  <img src={image.image} alt={image.title} className="w-full h-40 object-cover rounded-lg" />
-                  <p className="mt-2 text-lg font-semibold">{image.title}</p>
-                  <button onClick={() => handleDelete(image.eventId)} className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg">
-                    Delete
-                  </button>
+        {loading ? (
+          <p className="mt-4 text-center">Loading images...</p>
+        ) : (
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Uploaded Images</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {images.length > 0 ? (
+                images.map((image) => (
+                  <div key={image.eventId} className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
+                    <img src={image.image} alt={image.title} className="w-full h-40 object-cover rounded-lg" />
+                    <p className="mt-2 text-lg font-semibold">{image.title}</p>
+                    <button onClick={() => handleDelete(image.eventId)} className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg">
+                      Delete
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <div>
+                  <p className="text-center text-gray-600">No images available.</p>
                 </div>
-              ))
-            ) : (
-              <p className="text-center text-gray-600">No images available.</p>
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

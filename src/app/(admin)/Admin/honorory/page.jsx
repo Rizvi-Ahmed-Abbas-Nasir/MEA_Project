@@ -104,7 +104,7 @@ export default function HonoraryManagementPage() {
   return (
     <div className="flex w-full xl:flex-row flex-col">
       <NAV />
-      <div className="flex h-[100vh] flex-col w-full px-6 py-6 gap-6 bg-gray-100">
+      <div className="flex  flex-col w-full px-6 py-6 gap-6 bg-gray-100">
         <h1 className="text-3xl font-bold mb-4">Honorary Management</h1>
         <form
           onSubmit={handleSubmit}

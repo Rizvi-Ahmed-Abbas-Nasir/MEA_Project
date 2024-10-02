@@ -1,5 +1,7 @@
+"use client";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import NAV from "../../Navbar";
 
 const Page = () => {
   const [replies, setReplies] = useState([]);
@@ -36,12 +38,17 @@ const Page = () => {
     fetchReplies();
   }, []);
 
-  // Check for session status
+  useEffect(() => {
+    console.log("Page component mounted or language changed");
+    return () => {
+      console.log("Page component unmounted or cleanup");
+    };
+  }, []);
+
   if (status === "loading") {
-    return <p>Loading session...</p>; // Render a loading state for session
+    return <p>Loading session...</p>; 
   }
 
-  // Unauthorized access
   if (session?.user?.role !== "admin") {
     return <Unauthorized />;
   }
@@ -49,7 +56,7 @@ const Page = () => {
   return (
     <div className="flex w-full flex-col xl:flex-row">
       <NAV />
-      <div className="flex flex-col h-[100vh] w-full gap-6 items-center overflow-y-auto p-4 bg-gray-100 sm:p-6">
+      <div className="flex flex-col  w-full gap-6 items-center overflow-y-auto p-4 bg-gray-100 sm:p-6">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center">Replies</h1>
         {loading ? (
           <p className="text-center text-gray-700">Loading...</p>

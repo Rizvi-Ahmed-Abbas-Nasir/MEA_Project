@@ -8,11 +8,11 @@ export default function Page() {
 
   return (
     <div>
-      {/* {session?.user?.role === 'admin' ? ( */}
+      {session?.user?.role === 'admin' ? (
         <AdminPanel />
-       {/* ) : (
+       ) : (
         <Unauthorized />
-      )}  */}
+      )} 
     </div>
   );
 }

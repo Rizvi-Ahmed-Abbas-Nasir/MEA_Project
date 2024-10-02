@@ -155,9 +155,9 @@ export default function Header() {
               </Link>
             )}
             {session?.user?.role === "admin" ? (
-              <Link href="/Admin">
+              <a href="/Admin">
                 <h3 className="cursor-pointer hidden xl:flex">Admin</h3>
-              </Link>
+              </a>
             ) : null}
             <div className="flex items-center justify-center">
               <GoogleTranslate />
@@ -299,9 +299,9 @@ export default function Header() {
             </div>
             <div className="w-full text-white z-20">
               {session?.user?.role === "admin" ? (
-                <Link href="/Admin">
+                <a href="/Admin">
                   <h3 className="cursor-pointer  xl:flex">Admin</h3>
-                </Link>
+                </a>
               ) : null}
             </div>
           </div>
