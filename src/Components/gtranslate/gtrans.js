@@ -21,10 +21,21 @@ const GoogleTranslate = () => {
             },
             elementId
           );
+          
+          // Automatically change the language to Marathi (mr)
+          autoTranslateToMarathi();
         } else {
           console.error('Google Translate not loaded yet.');
         }
       }, 1000); // Wait 1 second before trying to access google.translate
+    };
+
+    const autoTranslateToMarathi = () => {
+      const selectElement = document.querySelector('.goog-te-combo');
+      if (selectElement) {
+        selectElement.value = 'mr'; // Set the language to Marathi (mr)
+        selectElement.dispatchEvent(new Event('change')); // Trigger the change event
+      }
     };
 
     // Check if the script is already added
@@ -42,8 +53,11 @@ const GoogleTranslate = () => {
             includedLanguages: 'en,mr',
             layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
           },
-          'google_translate_element'
+          elementId
         );
+        
+        // Automatically change the language to Marathi after initialization
+        autoTranslateToMarathi();
       };
     }
 
@@ -60,7 +74,6 @@ const GoogleTranslate = () => {
     <>
       <Head>
         <style>{`
-          
           body {
             top: 0px !important;
           }
