@@ -122,7 +122,7 @@ export default function Page() {
     <>
       <div className="flex w-full flex-col xl:flex-row">
         <NAV />
-        <div className="flex h-[100vh] flex-col w-full px-4 sm:px-6 py-4 sm:py-6 gap-6 bg-gray-100">
+        <div className="flex  flex-col w-full px-4 sm:px-6 py-4 sm:py-6 gap-6 bg-gray-100">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center">
             Requested Members List
           </h1>
