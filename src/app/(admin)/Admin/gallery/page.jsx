@@ -108,107 +108,107 @@ export default function GalleryPage() {
   }
 
   return (
-    <div className="flex w-full h-screen flex-row bg-gray-100">
-      <NAV />
-      <main className="flex flex-col w-full md:w-4/5 lg:w-3/4 xl:w-2/3 gap-8 p-8 overflow-y-auto">
-        <h1 className="text-3xl font-bold text-gray-800">Gallery</h1>
-        
-        <form
-          onSubmit={handleUpload}
-          className="bg-white shadow-md rounded-lg p-6 flex flex-col gap-6"
-        >
-          <div>
-            <label className="block font-semibold text-gray-700">
-              Title:
-              <input
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <label className="block font-semibold text-gray-700">
-              Date:
-              <input
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <label className="block font-semibold text-gray-700">
-              Description:
-              <textarea
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <label className="block font-semibold text-gray-700">
-              Image:
-              <input
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
-                type="file"
-                onChange={handleFileChange}
-                accept="image/*"
-                required
-              />
-            </label>
-          </div>
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
-            >
-              Upload
-            </button>
-          </div>
-        </form>
+    <div className="flex  w-full xl:flex-row flex-col">
+    <NAV />
+    <main className="flex  flex-col w-full px-6 py-6 gap-6  h-[100vh]  bg-gray-100 overflow-y-auto">
+      <h1 className="text-3xl font-bold text-gray-800">Gallery</h1>
+      
+      <form
+        onSubmit={handleUpload}
+        className="bg-white shadow-md rounded-lg p-6 flex flex-col gap-6"
+      >
+        <div>
+          <label className="block font-semibold text-gray-700">
+            Title:
+            <input
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label className="block font-semibold text-gray-700">
+            Date:
+            <input
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label className="block font-semibold text-gray-700">
+            Description:
+            <textarea
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label className="block font-semibold text-gray-700">
+            Image:
+            <input
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="file"
+              onChange={handleFileChange}
+              accept="image/*"
+              required
+            />
+          </label>
+        </div>
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300"
+          >
+            Upload
+          </button>
+        </div>
+      </form>
 
-        {statusMessage && (
-          <p className={`text-center mt-4 ${statusMessage.includes("error") ? "text-red-500" : "text-green-500"}`}>
-            {statusMessage}
-          </p>
-        )}
+      {statusMessage && (
+        <p className={`text-center mt-4 ${statusMessage.includes("error") ? "text-red-500" : "text-green-500"}`}>
+          {statusMessage}
+        </p>
+      )}
 
-        <section className="mt-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Uploaded Images</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {images.length > 0 ? (
-              images.map((image) => (
-                <div
-                  key={image.imageId}
-                  className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center"
+      <section className="mt-8">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Uploaded Images</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {images.length > 0 ? (
+            images.map((image) => (
+              <div
+                key={image.imageId}
+                className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center"
+              >
+                <img
+                  src={image.image}
+                  alt={image.title}
+                  className="w-full h-40 object-cover rounded-lg"
+                />
+                <p className="mt-2 text-lg font-semibold text-gray-700">{image.title}</p>
+                <button
+                  onClick={() => handleDelete(image.imageId)}
+                  className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
                 >
-                  <img
-                    src={image.image}
-                    alt={image.title}
-                    className="w-full h-40 object-cover rounded-lg"
-                  />
-                  <p className="mt-2 text-lg font-semibold text-gray-700">{image.title}</p>
-                  <button
-                    onClick={() => handleDelete(image.imageId)}
-                    className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
-                  >
-                    Delete
-                  </button>
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-gray-600">No images available.</p>
-            )}
-          </div>
-        </section>
-      </main>
-    </div>
+                  Delete
+                </button>
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-gray-600">No images available.</p>
+          )}
+        </div>
+      </section>
+    </main>
+  </div>
   );
 }
