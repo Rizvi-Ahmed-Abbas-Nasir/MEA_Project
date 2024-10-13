@@ -55,7 +55,7 @@ export default function RegisterForm() {
     };
 
     if (ec) {
-      validateEmployeeId();
+       validateEmployeeId();
     } else {
       setIsAuthorized(false);
     }

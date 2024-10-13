@@ -38,31 +38,17 @@ const Page = () => {
     fetchReplies();
   }, []);
 
-  useEffect(() => {
-    console.log("Page component mounted or language changed");
-    return () => {
-      console.log("Page component unmounted or cleanup");
-    };
-  }, []);
-
-  if (status === "loading") {
-    return <p>Loading session...</p>; 
-  }
-
   if (session?.user?.role !== "admin") {
     return <Unauthorized />;
   }
 
+
   return (
     <div className="flex w-full flex-col xl:flex-row">
       <NAV />
-      <div className="flex flex-col  w-full gap-6 items-center overflow-y-auto p-4 bg-gray-100 sm:p-6">
+      <div className="flex flex-col  w-full gap-6 items-center overflow-y-auto p-4 bg-gray-100 sm:p-6  md:overflow-y-auto md:h-[100vh]">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center">Replies</h1>
-        {loading ? (
-          <p className="text-center text-gray-700">Loading...</p>
-        ) : error ? (
-          <p className="text-center text-red-500">{error}</p>
-        ) : (
+  
           <div className="w-full max-w-4xl space-y-4">
             {replies.map((reply) => (
               <div
@@ -87,7 +73,7 @@ const Page = () => {
               </div>
             ))}
           </div>
-        )}
+      
       </div>
     </div>
   );
