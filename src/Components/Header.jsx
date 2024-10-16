@@ -95,6 +95,11 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="E-book" className="dropdown-link">
+                    E-Book
+                  </Link>
+                </li>
+                <li>
                   <Link href="#" className="dropdown-link">
                     Objectives
                   </Link>
@@ -194,6 +199,11 @@ export default function Header() {
                 <li>
                   <Link href="background-of-mea" className="dropdown-link">
                     Background of MEA
+                  </Link>
+                </li>
+                <li>
+                  <Link href="E-book" className="dropdown-link">
+                    E-Book
                   </Link>
                 </li>
                 <li>
