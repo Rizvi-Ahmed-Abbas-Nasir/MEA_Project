@@ -22,9 +22,9 @@ const BannerComponent = () => {
   }, [imageList.length]);
 
   const slideVariants = {
-    initial: { x: "-100%", opacity: 0 },  // Start off-screen to the left
+    initial: { x: "100%", opacity: 0 },  // Start off-screen to the right
     animate: { x: "0%", opacity: 1 },     // Slide to center
-    exit: { x: "100%", opacity: 0 },      // Exit off-screen to the right
+    exit: { x: "-100%", opacity: 0 },     // Exit off-screen to the left
   };
 
   return (
