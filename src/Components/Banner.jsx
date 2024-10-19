@@ -1,6 +1,28 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+// import path from "path"
+// import fs from "fs"
+
+
+
+// export async function getStaticProps() {
+//   const imagesDir = path.join(process.cwd(), 'public/images');
+//   const files = fs.readdirSync(imagesDir);
+
+//   // Filter out non-image files if needed (optional)
+//   const imageFiles = files.filter(file => /\.(jpg|jpeg|png|gif)$/.test(file));
+
+//   // Create paths with leading slash
+//   const imagePaths = imageFiles.map(file => `/images/${file}`);
+//   console.log(imagePaths)
+
+//   return {
+//     props: {
+//       imageList: imagePaths,
+//     },
+//   };
+// }
 
 const BannerComponent = () => {
   const imageList = [
