@@ -103,7 +103,7 @@ export default function Header() {
                   <Link href="#" className="dropdown-link">
                     Objectives
                   </Link>
-                </li> */}
+                </li> 
                 <li>
                   <Link
                     href="recognition-and-affiliation"

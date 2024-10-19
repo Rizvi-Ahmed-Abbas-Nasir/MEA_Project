@@ -31,42 +31,48 @@ export default function RegisterForm() {
   const searchParams = useSearchParams();
 
   const ec = searchParams.get("ec");
-  useEffect(() => {
-    const validateEmployeeId = async () => {
-      try {
-        const res = await fetch("/api/validateMember", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ employee_id: ec }),
-        });
-
-        const data = await res.json();
-        if (data.message == "true") {
-          setIsAuthorized(true);
-        } else {
-          setIsAuthorized(false);
-        }
-      } catch (error) {
-        setError("Failed to validate the employee code. Please try again.");
+  const validateEmployeeId = async () => {
+    try {
+      const res = await fetch("/api/validateMember", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ employee_id: ec }),
+      });
+  
+      const data = await res.json();
+      if (data.message == "true") {
+        setIsAuthorized(true);
+        return true;  // Return true if valid
+      } else {
         setIsAuthorized(false);
+        return false; // Return false if not valid
       }
-    };
-
+    } catch (error) {
+      setError("Failed to validate the employee code. Please try again.");
+      setIsAuthorized(false);
+      return false;  // Return false if an error occurs
+    }
+  };
+  
+  useEffect(() => {
     if (ec) {
-       validateEmployeeId();
+      validateEmployeeId(); // Call the function directly
     } else {
       setIsAuthorized(false);
     }
-  }, [ec]);
+  }, [ec]); // Remove validateEmployeeId from the dependency array
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    console.log("clicked")
 
     if (!bmcLetter50 || !bmcLetter) {
       setError("Please upload both the Declaration and Blank forms.");
+      console.log("clicked")
       return;
     }
 
@@ -77,6 +83,7 @@ export default function RegisterForm() {
 
     const isEmployeeIdValid = await validateEmployeeId();
     if (!isEmployeeIdValid) {
+      console.log("clicked pass")
       return; // Exit if employee code is invalid
     }
 
@@ -98,6 +105,9 @@ export default function RegisterForm() {
           authorization: process.env.NEXT_PUBLIC_API_KEY,
         },
       });
+      
+      console.log("Res: ",res)
+      console.log("HII")
 
       if (res.ok) {
         // Reset form on successful registration
@@ -142,10 +152,10 @@ export default function RegisterForm() {
 
   return (
     <>
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
+    <div className=" flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
       <Header />
       {isAuthorized ? (
-        <div className="h-[160vh] flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
+        <div className="h-[200vh] flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
           <div className="flex h-[100vh] flex-col justify-center items-center flex-grow">
             <div className="relative bg-white p-10 rounded-xl shadow-lg w-[50%]"> {/* Increased max-w-md to max-w-lg */}
               {/* Profile icon */}
@@ -166,6 +176,50 @@ export default function RegisterForm() {
   
               {/* Form */}
               <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Member Register</h2>
+              <div className="flex justify-center items-center gap-5 flex-row">
+
+              <div className="w-[40%] md:w-[30%] bg-white border rounded-lg shadow-lg">
+        <div className="flex justify-between items-center px-4 py-2 bg-gray-100 border-b">
+          <h3 className="text-base font-medium text-gray-700">PDF Preview</h3>
+          <a
+            href="/assets/consentform/form/form50.pdf" // Direct link to the PDF in the public folder
+            target="_blank"
+            className="text-blue-500 hover:text-blue-700 focus:outline-none text-sm"
+          >
+            Download
+          </a>
+        </div>
+        <embed 
+          src="/assets/consentform/form/form50.pdf" 
+          type="application/pdf" 
+          width="100%" 
+          height="300px" 
+          className="rounded-b-lg"
+        />
+      </div>
+      <div className="w-[40%] md:w-[30%] bg-white border rounded-lg shadow-lg">
+
+      <div className="flex justify-between items-center px-4 py-2 bg-gray-100 border-b">
+          <h3 className="text-base font-medium text-gray-700">PDF Preview</h3>
+          <a
+            href="/assets/consentform/form/form.pdf" // Direct link to the PDF in the public folder
+            target="_blank"
+            className="text-blue-500 hover:text-blue-700 focus:outline-none text-sm"
+          >
+            Download
+          </a>
+        </div>
+        <embed 
+          src="/assets/consentform/form/form.pdf" 
+          type="application/pdf" 
+          width="100%" 
+          height="300px" 
+          className="rounded-b-lg"
+          />
+      </div>
+          </div>
+
+
               <form onSubmit={handleSubmit} ref={form}>
                 {/* Grouped Inputs */}
                 <div className="mb-4 flex gap-4"> {/* Flex container with gap between inputs */}

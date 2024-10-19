@@ -16,52 +16,57 @@ export default function ImageUploadForm() {
   const [loading, setLoading] = useState(true);
 
 
-  // Fetch images function
-  const fetchImages = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST}/api/admin/event`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch images.");
-      }
-      const result = await response.json();
-      setImages(result);
-      setStatusMessage("");
-    } catch (error) {
-      setStatusMessage(
-        error.message || "An error occurred while fetching images."
-      );
-    } finally {
-    setLoading(false);
-  }
-  };
+  // // Fetch images function
+  // const fetchImages = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_HOST}/api/admin/event`
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch images.");
+  //     }
+  //     const result = await response.json();
+  //     setImages(result);
+  //     setStatusMessage("");
+  //   } catch (error) {
+  //     setStatusMessage(
+  //       error.message || "An error occurred while fetching images."
+  //     );
+  //   } finally {
+  //   setLoading(false);
+  // }
+  // };
 
-    fetchImages();
-
-    return () => {
-      setImages([]);
+  // fetchImages();
+  
+  //   // return () => {
+    //   //   setImages([]);
+    //   // };
+    
+    
+    const handleFileChange = (e) => {
+      setFile(e.target.files[0]);
     };
-  }, []);
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const fetchImages = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/event`);
-      if (!response.ok) throw new Error("Failed to fetch images.");
-      const result = await response.json();
-      setImages(result);
-    } catch (error) {
-      setStatusMessage(error.message || "An error occurred while fetching images.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    
+    const fetchImages = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/event`);
+        if (!response.ok) throw new Error("Failed to fetch images.");
+        const result = await response.json();
+        setImages(result);
+      } catch (error) {
+        setStatusMessage(error.message || "An error occurred while fetching images.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    useEffect(() => {
+      fetchImages()
+    }, []);
+    
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,6 +125,7 @@ export default function ImageUploadForm() {
       </div>
     );
   }
+
 
   return (
     <div className="flex w-full xl:flex-row flex-col">
