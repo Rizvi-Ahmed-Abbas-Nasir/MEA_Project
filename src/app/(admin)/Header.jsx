@@ -59,6 +59,12 @@ const AdminHeader = () => {
           <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap">Honorary Members</span>
         </Link>
       </li>
+      <li>
+        <Link href="/Admin/empcode" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+          <FaClipboard className="mr-2" />
+          <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap">Employee Code</span>
+        </Link>
+      </li>
     </ul>
   </nav>
 </div>

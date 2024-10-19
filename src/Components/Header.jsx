@@ -99,11 +99,7 @@ export default function Header() {
                     E-Book
                   </Link>
                 </li>
-                <li>
-                  <Link href="#" className="dropdown-link">
-                    Objectives
-                  </Link>
-                </li> 
+             
                 <li>
                   <Link
                     href="recognition-and-affiliation"
@@ -206,11 +202,7 @@ export default function Header() {
                     E-Book
                   </Link>
                 </li>
-                <li>
-                  <Link href="objectives" className="dropdown-link">
-                    Objectives
-                  </Link>
-                </li>
+               
                 <li>
                   <Link
                     href="recognition-and-affiliation"
