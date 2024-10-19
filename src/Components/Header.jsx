@@ -40,7 +40,7 @@ export default function Header() {
   };
 
   return (
-    <div className="HeaderContainer shadow-lg w-full flex flex-col text-white md:mt-10 bg-white ">
+    <div className="HeaderContainer shadow-lg w-full flex flex-col text-white bg-white ">
       <div className="NavContainer hidden w-full h-[4.2vh] bg-[#c72626] justify-between justify-items-center items-center xl:flex ">
         <div className="flex justify-center pl-10">
           <h4 className="text-white text-[0.9rem] font-bold ">

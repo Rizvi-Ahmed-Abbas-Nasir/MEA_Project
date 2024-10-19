@@ -8,11 +8,11 @@ const page = () => {
     <Header />
     <main>
       <section className="h-44 bg-[#232323] flex justify-center items-center flex-col text-white">
-        <h1 className="text-5xl p-3">Recognition & Affiliation With Uni Global</h1>
-        <p className="text-lg p-3"> About Us / Recognition & Affiliation With Uni Global</p>
+        <h1 className="text-5xl p-3">RECOGNITION AND AFFILIATION WITH UNI GLOBAL</h1>
+        <p className="text-lg p-3"> About Us / Recognition & Affiliation with uni global</p>
       </section>
       <section className='px-10 py-10'>
-        <div className='flex gap-7 py-5'>
+        <div className='flex justify-between flex-col md:justify-normal md:flex-row gap-7 py-5'>
           <div className='w-[50%]'>
             <div className='  first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 first-letter:me-3 first-letter:float-start text-justify'> The Mumbai Engineers Union (MEU) is an extremely important engineering association in Maharashtra, which effectively supports engineers in resolving their issues. Since its establishment, the union has consistently advocated for various issues and provided guidance to engineers to achieve excellence.
 
