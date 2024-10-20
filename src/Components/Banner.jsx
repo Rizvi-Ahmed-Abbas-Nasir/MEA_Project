@@ -31,6 +31,8 @@ const BannerComponent = () => {
     "/images/bg3.jpeg",
     "/images/bg4.jpeg",
     "/images/bg5.jpeg",
+    "/images/bg6.jpg",
+    "/images/bg7.jpeg",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

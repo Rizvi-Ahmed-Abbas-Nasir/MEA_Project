@@ -337,7 +337,7 @@ export default function Landing() {
             <div className="w-[90%] mt-10">
               <h1 className="text-[2.5rem]">Events</h1>
             </div>
-            <div className="w-full min-h-fit flex  flex-wrap m-10 gap-10">
+            <div className="w-full min-h-fit flex  flex-wrap m-0 md:m-10 gap-10">
               {events.map((event) => (
                 <div
                   key={event.eventId}

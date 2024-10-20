@@ -40,11 +40,11 @@ export default function RegisterForm() {
         },
         body: JSON.stringify({ employee_id: ec }),
       });
-  
+
       const data = await res.json();
       if (data.message == "true") {
         setIsAuthorized(true);
-        return true;  // Return true if valid
+        return true; // Return true if valid
       } else {
         setIsAuthorized(false);
         return false; // Return false if not valid
@@ -52,10 +52,10 @@ export default function RegisterForm() {
     } catch (error) {
       setError("Failed to validate the employee code. Please try again.");
       setIsAuthorized(false);
-      return false;  // Return false if an error occurs
+      return false; // Return false if an error occurs
     }
   };
-  
+
   useEffect(() => {
     if (ec) {
       validateEmployeeId(); // Call the function directly
@@ -63,16 +63,15 @@ export default function RegisterForm() {
       setIsAuthorized(false);
     }
   }, [ec]); // Remove validateEmployeeId from the dependency array
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    console.log("clicked")
+    console.log("clicked");
 
     if (!bmcLetter50 || !bmcLetter) {
       setError("Please upload both the Declaration and Blank forms.");
-      console.log("clicked")
+      console.log("clicked");
       return;
     }
 
@@ -83,7 +82,7 @@ export default function RegisterForm() {
 
     const isEmployeeIdValid = await validateEmployeeId();
     if (!isEmployeeIdValid) {
-      console.log("clicked pass")
+      console.log("clicked pass");
       return; // Exit if employee code is invalid
     }
 
@@ -105,9 +104,9 @@ export default function RegisterForm() {
           authorization: process.env.NEXT_PUBLIC_API_KEY,
         },
       });
-      
-      console.log("Res: ",res)
-      console.log("HII")
+
+      console.log("Res: ", res);
+      console.log("HII");
 
       if (res.ok) {
         // Reset form on successful registration
@@ -152,213 +151,248 @@ export default function RegisterForm() {
 
   return (
     <>
-    <div className=" flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
-      <Header />
-      {isAuthorized ? (
-        <div className="h-[200vh] flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
-          <div className="flex h-[100vh] flex-col justify-center items-center flex-grow">
-            <div className="relative bg-white p-10 rounded-xl shadow-lg w-[50%]"> {/* Increased max-w-md to max-w-lg */}
-              {/* Profile icon */}
-              <div className="absolute top-[-50px] left-[50%] translate-x-[-50%] bg-gradient-to-br from-[red] to-[red] w-20 h-20 rounded-full flex justify-center items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-10 w-10 text-white"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 110-12 6 6 0 010 12zM7 10a3 3 0 116 0 3 3 0 01-6 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+      <div className=" flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
+        <Header />
+        {isAuthorized ? (
+          <div className="h-[200vh] flex flex-col bg-gradient-to-br from-gray-100 to-gray-300">
+            <div className="flex h-[100vh] flex-col justify-center items-center flex-grow">
+              <div className="relative bg-white p-10 rounded-xl shadow-lg md:w-[50%] w-screen">
+                {" "}
+                {/* Increased max-w-md to max-w-lg */}
+                {/* Profile icon */}
+                <div className="absolute top-[-50px] left-[50%] translate-x-[-50%] bg-gradient-to-br from-[red] to-[red] w-20 h-20 rounded-full flex justify-center items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-10 w-10 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 110-12 6 6 0 010 12zM7 10a3 3 0 116 0 3 3 0 01-6 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                {/* Form */}
+                <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+                  Member Register
+                </h2>
+                <div className="flex justify-center items-center gap-5 flex-row">
+                  <div className="w-[60%] md:w-[30%] bg-white border rounded-lg shadow-lg">
+                    <div className="flex justify-between items-center px-4 py-2 bg-gray-100 border-b">
+                      <h3 className="text-base font-medium text-gray-700">
+                        PDF Preview
+                      </h3>
+                      <a
+                        href="/assets/consentform/form/form50.pdf" // Direct link to the PDF in the public folder
+                        target="_blank"
+                        className="text-blue-500 hover:text-blue-700 focus:outline-none text-sm"
+                      >
+                        Download
+                      </a>
+                    </div>
+                    <embed
+                      src="/assets/consentform/form/form50.pdf"
+                      type="application/pdf"
+                      width="100%"
+                      height="300px"
+                      className="rounded-b-lg"
+                    />
+                  </div>
+                  <div className="w-[60%] md:w-[30%] bg-white border rounded-lg shadow-lg">
+                    <div className="flex justify-between items-center px-4 py-2 bg-gray-100 border-b">
+                      <h3 className="text-base font-medium text-gray-700">
+                        PDF Preview
+                      </h3>
+                      <a
+                        href="/assets/consentform/form/form.pdf" // Direct link to the PDF in the public folder
+                        target="_blank"
+                        className="text-blue-500 hover:text-blue-700 focus:outline-none text-sm"
+                      >
+                        Download
+                      </a>
+                    </div>
+                    <embed
+                      src="/assets/consentform/form/form.pdf"
+                      type="application/pdf"
+                      width="100%"
+                      height="300px"
+                      className="rounded-b-lg"
+                    />
+                  </div>
+                </div>
+                <form onSubmit={handleSubmit} ref={form}>
+                  {/* Grouped Inputs */}
+                  <div className="mb-4 flex gap-4">
+                    {" "}
+                    {/* Flex container with gap between inputs */}
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-600 mb-2">
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        name="fullName"
+                        value={fullName}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email Input */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      required
+                    />
+                    {emailError && (
+                      <p className="text-red-500 mb-4">{emailError}</p>
+                    )}
+                  </div>
+
+                  {/* Employee Code and Contact Number Side by Side */}
+                  <div className="mb-4 flex gap-4">
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-600 mb-2">
+                        Employee Code
+                      </label>
+                      <input
+                        type="text"
+                        name="employee_id"
+                        value={employee_id}
+                        onChange={(e) => setEmployee_id(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        required
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-600 mb-2">
+                        Contact Number
+                      </label>
+                      <input
+                        type="tel"
+                        name="contactNumber"
+                        value={contactNumber}
+                        onChange={(e) => setNumber(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        required
+                      />
+                      {numberError && (
+                        <p className="text-red-500 mb-4">{numberError}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Other Form Fields */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Designation
+                    </label>
+                    <input
+                      type="text"
+                      name="designation"
+                      value={designation}
+                      onChange={(e) => setDesignation(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      required
+                    />
+                    {degError && (
+                      <p className="text-red-500 mb-4">{degError}</p>
+                    )}
+                  </div>
+
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      name="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      required
+                    />
+                    {pass1Error && (
+                      <p className="text-red-500 mb-4">{pass1Error}</p>
+                    )}
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Confirm Password
+                    </label>
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      required
+                    />
+                    {pass2Error && (
+                      <p className="text-red-500 mb-4">{pass2Error}</p>
+                    )}
+                  </div>
+
+                  {/* File Upload Section */}
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Declaration Form
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf"
+                      onChange={(e) => handleFileUpload(e, setDeclarationForm)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-600 mb-2">
+                      Blank Form
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf"
+                      onChange={(e) => handleFileUpload(e, setBlankForm)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      required
+                    />
+                  </div>
+
+                  {error && (
+                    <p className="text-red-500 text-center mb-4">{error}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150"
+                  >
+                    Register
+                  </button>
+                </form>
               </div>
-  
-              {/* Form */}
-              <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Member Register</h2>
-              <div className="flex justify-center items-center gap-5 flex-row">
-
-              <div className="w-[40%] md:w-[30%] bg-white border rounded-lg shadow-lg">
-        <div className="flex justify-between items-center px-4 py-2 bg-gray-100 border-b">
-          <h3 className="text-base font-medium text-gray-700">PDF Preview</h3>
-          <a
-            href="/assets/consentform/form/form50.pdf" // Direct link to the PDF in the public folder
-            target="_blank"
-            className="text-blue-500 hover:text-blue-700 focus:outline-none text-sm"
-          >
-            Download
-          </a>
-        </div>
-        <embed 
-          src="/assets/consentform/form/form50.pdf" 
-          type="application/pdf" 
-          width="100%" 
-          height="300px" 
-          className="rounded-b-lg"
-        />
-      </div>
-      <div className="w-[40%] md:w-[30%] bg-white border rounded-lg shadow-lg">
-
-      <div className="flex justify-between items-center px-4 py-2 bg-gray-100 border-b">
-          <h3 className="text-base font-medium text-gray-700">PDF Preview</h3>
-          <a
-            href="/assets/consentform/form/form.pdf" // Direct link to the PDF in the public folder
-            target="_blank"
-            className="text-blue-500 hover:text-blue-700 focus:outline-none text-sm"
-          >
-            Download
-          </a>
-        </div>
-        <embed 
-          src="/assets/consentform/form/form.pdf" 
-          type="application/pdf" 
-          width="100%" 
-          height="300px" 
-          className="rounded-b-lg"
-          />
-      </div>
-          </div>
-
-
-              <form onSubmit={handleSubmit} ref={form}>
-                {/* Grouped Inputs */}
-                <div className="mb-4 flex gap-4"> {/* Flex container with gap between inputs */}
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">First Name</label>
-                    <input
-                      type="text"
-                      name="fullName"
-                      value={fullName}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                      required
-                    />
-                  </div>
-               
-                </div>
-  
-                {/* Email Input */}
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-600 mb-2">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    required
-                  />
-                  {emailError && <p className="text-red-500 mb-4">{emailError}</p>}
-                </div>
-  
-                {/* Employee Code and Contact Number Side by Side */}
-                <div className="mb-4 flex gap-4">
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">Employee Code</label>
-                    <input
-                      type="text"
-                      name="employee_id"
-                      value={employee_id}
-                      onChange={(e) => setEmployee_id(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                      required
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-600 mb-2">Contact Number</label>
-                    <input
-                      type="tel"
-                      name="contactNumber"
-                      value={contactNumber}
-                      onChange={(e) => setNumber(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                      required
-                    />
-                    {numberError && <p className="text-red-500 mb-4">{numberError}</p>}
-                  </div>
-                </div>
-  
-                {/* Other Form Fields */}
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-600 mb-2">Designation</label>
-                  <input
-                    type="text"
-                    name="designation"
-                    value={designation}
-                    onChange={(e) => setDesignation(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    required
-                  />
-                  {degError && <p className="text-red-500 mb-4">{degError}</p>}
-                </div>
-  
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-600 mb-2">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    required
-                  />
-                  {pass1Error && <p className="text-red-500 mb-4">{pass1Error}</p>}
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-600 mb-2">Confirm Password</label>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    required
-                  />
-                  {pass2Error && <p className="text-red-500 mb-4">{pass2Error}</p>}
-                </div>
-  
-                {/* File Upload Section */}
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-600 mb-2">Declaration Form</label>
-                  <input
-                    type="file"
-                    accept=".pdf"
-                    onChange={(e) => handleFileUpload(e, setDeclarationForm)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    required
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-600 mb-2">Blank Form</label>
-                  <input
-                    type="file"
-                    accept=".pdf"
-                    onChange={(e) => handleFileUpload(e, setBlankForm)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    required
-                  />
-                </div>
-  
-                {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-  
-                <button
-                  type="submit"
-                  className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150"
-                >
-                  Register
-                </button>
-              </form>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="h-screen flex justify-center items-center">
-          <p className="text-lg text-gray-800">Unauthorized Access. Please check your employee code.</p>
-        </div>
-      )}
-      <Footer />
-    </div>
-  </>
-  
+        ) : (
+          <div className="h-screen flex justify-center items-center">
+            <p className="text-lg text-gray-800">
+              Unauthorized Access. Please check your employee code.
+            </p>
+          </div>
+        )}
+        <Footer />
+      </div>
+    </>
   );
 }
