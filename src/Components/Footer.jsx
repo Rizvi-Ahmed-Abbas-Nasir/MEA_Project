@@ -8,13 +8,13 @@ export default function Footer() {
     
   const d = new Date();
   return (
-    <footer className="text-white   ">
+    <footer className="text-white mt-6 md:mt-0">
         <section className="min-h-96 bg-mainFooter flex items-center md:flex-row flex-col">
             <section className="max-w-96 p-10 bg-sectionOne h-full md:mb-0 md:mt-20 md:mr-20 md:ml-20 m-10">
                 <h1 className="text-lg">Municipal Engineer Association</h1>
                 <br />
                 <div className="text-lightText">
-                <p className="text-sm">"Engineering is not just about building things; it's about building the future and pushing the boundaries of what’s possible."</p>
+                <p className="text-sm">&quot;Engineering is not just about building things; it&apos;s about building the future and pushing the boundaries of what&apos;s possible."</p>
                 <br />
                 <p className="flex justify-center"><span className="p-1"><FaLocationDot /></span> 237-239, Bal Dandavate Smruti, Bawla Masjid, Joshi Marg, Dilai Road, Mumbai-400013</p>
                 <br />
