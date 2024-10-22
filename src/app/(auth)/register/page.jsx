@@ -67,11 +67,11 @@ export default function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    console.log("clicked");
+    // console.log("clicked");
 
     if (!bmcLetter50 || !bmcLetter) {
       setError("Please upload both the Declaration and Blank forms.");
-      console.log("clicked");
+      // console.log("clicked");
       return;
     }
 
