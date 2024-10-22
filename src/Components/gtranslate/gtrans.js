@@ -4,34 +4,6 @@ import Head from 'next/head';
 const GoogleTranslate = () => {
   useEffect(() => {
     const scriptId = 'google-translate-script';
-<<<<<<< HEAD
-    const elementId = 'google_translate_element';
-
-    // Function to initialize Google Translate
-    const initializeGoogleTranslate = () => {
-      // Use setTimeout to give some time for the google object to be ready
-      setTimeout(() => {
-        if (window.google && window.google.translate) {
-          new window.google.translate.TranslateElement(
-            {
-              pageLanguage: 'en',
-              includedLanguages: 'en,mr',
-              layout: window.google.translate.TranslateElement.InlineLayout 
-                      ? window.google.translate.TranslateElement.InlineLayout.HORIZONTAL 
-                      : null,
-            },
-            elementId
-          );
-          
-          // Automatically change the language to Marathi (mr)
-          autoTranslateToMarathi();
-        } else {
-          console.error('Google Translate not loaded yet.');
-        }
-      }, 1000); // Wait 1 second before trying to access google.translate
-    };
-=======
->>>>>>> 00b830e16aeceba30962af3cda21bf2497501621
 
     const autoTranslateToMarathi = () => {
       const selectElement = document.querySelector('.goog-te-combo');
@@ -59,11 +31,6 @@ const GoogleTranslate = () => {
           },
           elementId
         );
-<<<<<<< HEAD
-        
-        // Automatically change the language to Marathi after initialization
-        autoTranslateToMarathi();
-=======
 
         // Automatically set language to Marathi after Google Translate initializes
         setTimeout(() => {
@@ -73,7 +40,6 @@ const GoogleTranslate = () => {
             select.dispatchEvent(new Event('change'));  // Trigger language change event
           }
         }, 1000); // Delay to allow the widget to fully load
->>>>>>> 00b830e16aeceba30962af3cda21bf2497501621
       };
     }
 
