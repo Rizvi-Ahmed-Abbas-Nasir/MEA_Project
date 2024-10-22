@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import { useEffect,useState } from "react";
+import { useEffect,useState,useRef  } from "react";
 import { IoCall } from "react-icons/io5";
 import IMGs from "../Assets/IMGs/man.png"
 import { Nunito } from 'next/font/google'
@@ -11,12 +11,16 @@ import { FaBook } from "react-icons/fa6";
 import { FaLandmark } from "react-icons/fa6";
 import { FaPerson } from "react-icons/fa6";
 import { FaLandmarkDome } from "react-icons/fa6";
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import OnScrollAnimation from "../Components/OnScrollAnimmation";
 import Link from "next/link";
 import Footer from '../Components/Footer'
 import Header from '../Components/Header'
-import Banner from "../Components/Banner"
-
+import Banner from "../Components/Banner";
+import { useGSAP } from '@gsap/react';
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 const nunito = Nunito
     ({
         subsets: ['latin'],
@@ -25,7 +29,71 @@ const nunito = Nunito
     })
 export default function Landing() {
     const [events, setEvents] = useState([]);
+    const elementRef = useRef(null);
 
+    useGSAP(
+        () => {
+            
+            // gsap code here...
+            gsap.from('.textup', { 
+                y: 25,
+                opacity:0,
+                duration:1,
+                stagger:1,
+                scrollTrigger: {
+                    trigger: '.newone',
+                    start: 'top bottom',
+                    end: 'center center',
+                    scrub: true,
+                  }
+             }); 
+             gsap.from('.busanimation',{
+                x:400,
+                opacity:0,
+                duration:1.5,
+                scrollTrigger: {
+                    trigger: '.busanimation',
+                    start: '50% bottom',
+                    end: 'center center',
+                  }
+             })
+             gsap.from('.slide',{
+                x:40,
+                opacity:0,
+                duration:1.5,
+                scrollTrigger: {
+                    trigger: '.slide',
+                    start: '50% bottom',
+                    end: 'center center',
+                    scrub:true,
+                  }
+             })
+             gsap.from('.slide2',{
+                x:40,
+                opacity:0,
+                duration:1.5,
+                stagger:2,
+                scrollTrigger: {
+                    trigger: '.slide2box',
+                    start: 'top bottom',
+                    end: 'center center',
+                    scrub:true,
+                  }
+             })
+             gsap.from('.nameop',{
+                
+                opacity:0.2,
+                duration:1.5,
+                scrollTrigger: {
+                    trigger: '.nameop',
+                    start: 'top bottom',
+                    end: 'center center',
+                    scrub:true,
+                  }
+             })// <-- automatically reverted
+        },
+        { scope: elementRef }
+    );
     const fetchImages = async () => {
       try {
         const response = await fetch(
@@ -63,9 +131,9 @@ export default function Landing() {
     //        OnScrollAnimation(hiddenElement2)
     }
     return (
-        <div>
+        <div ref={elementRef}>
             <Header />
-        <div className=" w-[100%] bg-white flex gap-20 flex-col">
+        <div className=" w-[100%] bg-white flex gap-20 flex-col overflow-hidden">
             <div className=" w-full h-[100vh] flex justify-center ">
                 {/* <Image
                 alt="bg-image"
@@ -76,36 +144,36 @@ export default function Landing() {
                 /> */}
                 <Banner />
             </div>
-            <div className="  w-[100%]   bg-white  flex justify-center">
+            <div className="  w-[100%] newone  bg-white  flex justify-center">
                 <div className="w-[100%] h-[70vh] sm:h-[25vh] md:h-[65vh] bg-white mt-[-10rem] z-10 flex  justify-around flex-wrap xl:h-[25vh] gap-5 xl:flex-nowrap shadow-xl xl:w-[90%] text-center    ">
-                    <div className=" flex justify-center  items-center px-10 py-5  text-center gap-2">
-                        <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">68</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">YEAR&apos;S FOUNDATION</h3>
+                    <div className="textup flex justify-center  items-center px-10 py-5  text-center gap-2">
+                        <h1 className=" text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">68</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">YEAR&apos;S FOUNDATION</h3>
                     </div>
-                    <div className=" flex justify-center items-center px-10 py-5  text-center gap-2">
+                    <div className=" textup flex justify-center items-center px-10 py-5  text-center gap-2">
                         <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">1500+</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">TOTAL MEMBERS</h3>
                     </div>
-                    <div className=" flex justify-center items-center px-10 py-5  text-center gap-2">
+                    <div className=" textup flex justify-center items-center px-10 py-5  text-center gap-2">
                         <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">25</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">Total SEMINARS</h3>
                     </div>
-                    <div className=" flex justify-center px-10 py-5 items-center text-center gap-2">
+                    <div className="textup flex justify-center px-10 py-5 items-center text-center gap-2">
                         <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">525</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">SUCCESS PROGRAM</h3>
                     </div>
                 </div>
 
             </div>
-            <div className="w-full bg-white flex justify-center flex-col items-center gap-10 ">
-                <div className="w-[90%] h-[inherte] text-black flex items-center xl:justify-around xl:items-start gap-20 md:gap-10 xl:gap-5 flex-col xl:flex-row">
+            <div className=" w-full bg-white flex justify-center flex-col items-center gap-10 ">
+                <div className="busanimation w-[90%] h-[inherte] text-black flex items-center xl:justify-around xl:items-start gap-20 md:gap-10 xl:gap-5 flex-col xl:flex-row">
                     <div className=" w-[100%] xl:w-[35%] flex  justify-center flex-col xl:block  ">
                         <h1 className={`${nunito.className} text-[2rem]  font-bold `}>WELCOME TO MUNICIPAL ENGINEERS ASSOCIATION</h1>
                         <div className="w-[87%]">
                             <h5 className="mt-5 ">The struggles undertaken by the Municipal Engineers Association have yielded numerous results. For instance,
                                 promotion policies have been established, increases in salary, allowances, and service facilities have been achieved, and a decision was made to retain positions for degree-holding engineers.</h5>
                         </div>
-                        <Link href={'background-of-mea'}>
+                        <Link  href={'background-of-mea'}>
                             <button className=" py-4 px-4 rounded-md mt-5 bg-[#c72626]  text-white">Learn More</button>
                         </Link>
                     </div>
-                    <div className="w-[100%]  xl:w-[30%] md:h-[80] xl:h-[50vh] ">
+                    <div className="w-[100%] slide xl:w-[30%] md:h-[80] xl:h-[50vh] ">
                         <Image src={"/assets/images/home.png"}
                         alt="heroimage"
                             className="w-[100%] h-[100%] xl:h-[100%] object-fit  "
@@ -128,10 +196,10 @@ export default function Landing() {
                 </div>
             </div>
             <div className="w-full h-[inherte] flex justify-center  ">
-                <div className=" w-[100%] px-[15px] md:w-full xl:w-[90%] h-[inherte] flex justify-around items-center  flex-wrap md:gap-10 xl:gap-2  ">
-                    <div className="  h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                <div className="slide2box w-[100%] px-[15px] md:w-full xl:w-[90%] h-[inherte] flex justify-center items-center  flex-wrap md:gap-10 xl:gap-10 ">
+                    <div className=" slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
-                            <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
+                            <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] duration-300 ease-in-out ">
                                 <FaLandmarkDome style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
                             </div>
                             <div className="flex h-[12vh]  py-10 items-center">
@@ -146,7 +214,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className="  h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className=" slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaRegBuilding style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -163,7 +231,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className=" h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaBook style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -180,7 +248,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className="  h-[40vh] md:my-7   md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className=" slide2 h-[40vh] md:my-7   md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className="hover:animate-pulse hover:shadow-xl  h-[10vh] uration-300 ease-in-out ">
                                 <FaPerson style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -197,7 +265,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className=" h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaLandmark style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -298,7 +366,7 @@ export default function Landing() {
 
                         </div>
                     </div> */}
-                    <div className="w-[50%]">
+                    <div className="nameop w-[50%]">
                         <ul className="max-w-md space-y-1  list-disc list-inside ">
                             <li className="font-bold">Sharad Rao</li>
                             <li>Adv. Mahabal Shetty - President / General Secretary</li>
@@ -313,7 +381,7 @@ export default function Landing() {
                         </ul>
                     </div>
 
-                    <div className="w-[50%]">
+                    <div className="nameop w-[50%]">
                         <ul className="max-w-md space-y-1  list-disc list-inside">
                             <li>Engr. Navnath Ghadge - Executive Chairman</li>
                             <li>Engr. Vishal Kokate - Secretary</li>
