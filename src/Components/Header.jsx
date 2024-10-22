@@ -212,13 +212,13 @@ export default function Header() {
                   </Link>
                 </li>
               </ul>
+            </div>
               <Link href={"/events"}>
-              <h3 className="cursor-pointer hidden xl:flex">Events</h3>
+              <h3 className="cursor-pointer">Events</h3>
             </Link>
             <Link href={"/gallery"}>
-              <h3 className="cursor-pointer hidden xl:flex">Gallery</h3>
+              <h3 className="cursor-pointer">Gallery</h3>
             </Link>
-            </div>
             <Link href={"/contact-us"}>
               <h4>Contact us</h4>
             </Link>
