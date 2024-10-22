@@ -15,6 +15,8 @@ import OnScrollAnimation from "../Components/OnScrollAnimmation";
 import Link from "next/link";
 import Footer from '../Components/Footer'
 import Header from '../Components/Header'
+import Banner from "../Components/Banner"
+
 const nunito = Nunito
     ({
         subsets: ['latin'],
@@ -64,13 +66,14 @@ export default function Landing() {
             <Header />
         <div className=" w-[100%] bg-white flex gap-20 flex-col">
             <div className=" w-full h-[100vh] flex justify-center ">
-                <Image
+                {/* <Image
                 alt="bg-image"
                 width={10000}
                 height={10000}
                     src="/assets/images/flip_bg.png"
                     className=" w-[100%] h-[100%] object-right object-cover"
-                />
+                /> */}
+                <Banner />
             </div>
             <div className=" hidden1 w-[100%]   bg-white  flex justify-center">
                 <div className="w-[100%] h-[70vh] sm:h-[25vh] md:h-[65vh] bg-white mt-[-10rem] z-10 flex  justify-around flex-wrap xl:h-[25vh] gap-5 xl:flex-nowrap shadow-xl xl:w-[90%] text-center    ">
@@ -334,7 +337,7 @@ export default function Landing() {
             <div className="w-[90%] mt-10">
               <h1 className="text-[2.5rem]">Events</h1>
             </div>
-            <div className="w-full min-h-fit flex  flex-wrap m-10 gap-10">
+            <div className="w-full min-h-fit flex  flex-wrap m-0 md:m-10 gap-10">
               {events.map((event) => (
                 <div
                   key={event.eventId}

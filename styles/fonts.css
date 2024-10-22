@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.woff2') format('woff2'), /* Add your file name */
+         url('/fonts/Inter.woff') format('woff'); /* Add your file name */
+    font-weight: 100 900; /* Adjust based on your font weights */
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('/fonts/Nunito-Italic-VariableFont_wght.ttf') format('ttf'), /* Add your file name */
+         url('/fonts/Nunito-VariableFont_wght.ttf') format('ttf'); /* Add your file name */
+    font-weight: 100 900; /* Adjust based on your font weights */
+    font-display: swap;
+}

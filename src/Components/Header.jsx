@@ -94,11 +94,12 @@ export default function Header() {
                     Background of MEA
                   </Link>
                 </li>
-                {/* <li>
-                  <Link href="#" className="dropdown-link">
-                    Objectives
+                <li>
+                  <Link href="E-book" className="dropdown-link">
+                    E-Book
                   </Link>
-                </li> */}
+                </li>
+             
                 <li>
                   <Link
                     href="recognition-and-affiliation"
@@ -197,10 +198,11 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="objectives" className="dropdown-link">
-                    Objectives
+                  <Link href="E-book" className="dropdown-link">
+                    E-Book
                   </Link>
                 </li>
+               
                 <li>
                   <Link
                     href="recognition-and-affiliation"

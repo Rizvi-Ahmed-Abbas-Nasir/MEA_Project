@@ -15,53 +15,60 @@ const AdminHeader = () => {
     <div className=" w-full bg-red-900 text-white">
       {/* Sidebar */}
       <div className="xl:w-[100%] h-full bg-red-800 flex-col hidden xl:flex">
-        <nav className="flex-grow px-4 py-6">
-          <ul className="space-y-2 mt-4">
-            <li>
-              <Link href="/" className="flex items-center p-2 rounded-lg hover:bg-red-700">
-                <FaHome className="mr-2" />
-                <span className="font-medium text-sm md:text-[.6rem] lg:text-lg xl:text-xl">HomePage</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/Admin/Members" className="flex items-center p-2 rounded-lg hover:bg-red-700">
-                <FaClipboard className="mr-2" />
-                <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl">Members</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/Admin/member_req" className="flex items-center p-2 rounded-lg hover:bg-red-700">
-                <FaUser className="mr-2" />
-                <span className="font-medium text-sm md:text-[.6rem] lg:text-lg xl:text-xl">Member's Request</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/Admin/replies" className="flex items-center p-2 rounded-lg hover:bg-red-700">
-                <FaUser className="mr-2" />
-                <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl">Replies</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/Admin/Events" className="flex items-center p-2 rounded-lg hover:bg-red-600">
-                <FaCalendar className="mr-2" />
-                <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl">Event</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/Admin/gallery" className="flex items-center p-2 rounded-lg hover:bg-red-700">
-                <FaClipboard className="mr-2" />
-                <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl">Gallery</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/Admin/honorory" className="flex items-center p-2 rounded-lg hover:bg-red-700">
-                <FaClipboard className="mr-2" />
-                <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl">Honorary Members</span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+  <nav className="flex-grow px-4 py-6">
+    <ul className="space-y-2 mt-4">
+      <li>
+        <Link href="/" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+          <FaHome className="mr-2" />
+          <span className="font-medium text-sm md:text-[.6rem] lg:text-lg xl:text-xl whitespace-nowrap">HomePage</span>
+        </Link>
+      </li>
+      <li>
+        <Link href="/Admin/Members" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+          <FaClipboard className="mr-2" />
+          <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap">Members</span>
+        </Link>
+      </li>
+      <li>
+        <Link href="/Admin/member_req" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+          <FaUser className="mr-2" />
+          <span className="font-medium text-sm md:text-[.6rem] lg:text-lg xl:text-xl whitespace-nowrap">Member's Request</span>
+        </Link>
+      </li>
+      <li>
+        <Link href="/Admin/replies" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+          <FaUser className="mr-2" />
+          <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap">Replies</span>
+        </Link>
+      </li>
+      <li>
+        <Link href="/Admin/Events" className="flex items-center p-2 rounded-lg hover:bg-red-600">
+          <FaCalendar className="mr-2" />
+          <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap">Event</span>
+        </Link>
+      </li>
+      <li>
+        <Link href="/Admin/gallery" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+          <FaClipboard className="mr-2" />
+          <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap">Gallery</span>
+        </Link>
+      </li>
+      <li>
+        <Link href="/Admin/honorory" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+          <FaClipboard className="mr-2" />
+          <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap">Honorary Members</span>
+        </Link>
+      </li>
+      <li>
+        <Link href="/Admin/empcode" className="flex items-center p-2 rounded-lg hover:bg-red-700">
+          <FaClipboard className="mr-2" />
+          <span className="font-medium text-sm md:text-base lg:text-lg xl:text-xl whitespace-nowrap">Employee Code</span>
+        </Link>
+      </li>
+    </ul>
+  </nav>
+</div>
+
 
       {/* Hamburger Menu */}
       <div className="relative flex items-center h-[10vh] justify-center w-full z-50 lg:hidden">

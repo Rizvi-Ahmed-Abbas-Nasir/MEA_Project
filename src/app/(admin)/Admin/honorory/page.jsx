@@ -13,6 +13,7 @@ export default function HonoraryManagementPage() {
   const [statusMessage, setStatusMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true); // Track loading state
 
+
   // Fetch honorary members
   const fetchHonoraryMembers = async () => {
     try {
@@ -103,84 +104,84 @@ export default function HonoraryManagementPage() {
 
   return (
     <div className="flex w-full xl:flex-row flex-col">
-      <NAV />
-      <div className="flex  flex-col w-full px-6 py-6 gap-6 bg-gray-100">
-        <h1 className="text-3xl font-bold mb-4">Honorary Management</h1>
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded-lg p-6 mb-8"
+    <NAV />
+    <div className="flex  flex-col w-full px-6 py-6 gap-6 bg-gray-100 md:overflow-y-auto md:h-[100vh]">
+      <h1 className="text-3xl font-bold mb-4">Honorary Management</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded-lg p-6 mb-8"
+      >
+        <h2 className="text-xl font-semibold mb-4">Add Honorary Member</h2>
+        <div className="mb-4">
+          <label className="block mb-2 font-medium">
+            Name:
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </label>
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 font-medium">
+            Role:
+            <input
+              type="text"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+              className="border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </label>
+        </div>
+        <button
+          type="submit"
+          className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
         >
-          <h2 className="text-xl font-semibold mb-4">Add Honorary Member</h2>
-          <div className="mb-4">
-            <label className="block mb-2 font-medium">
-              Name:
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
-            </label>
-          </div>
-          <div className="mb-4">
-            <label className="block mb-2 font-medium">
-              Role:
-              <input
-                type="text"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                required
-                className="border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
-          >
-            Add Honorary
-          </button>
-        </form>
-        {statusMessage && (
-          <p
-            className={`mb-4 text-sm ${
-              statusMessage.includes("successfully")
-                ? "text-green-600"
-                : "text-red-600"
-            }`}
-          >
-            {statusMessage}
-          </p>
-        )}
-        <h2 className="text-2xl font-semibold mb-4">
-          Existing Honorary Members
-        </h2>
-        {isLoading ? (
-          <p className="text-gray-600">Loading honorary members...</p>
-        ) : honoraryList.length > 0 ? (
-          <ul className="bg-white shadow-md rounded-lg p-6">
-            {honoraryList.map((member) => (
-              <li
-                key={member.honoraryId}
-                className="flex justify-between items-center mb-4 p-2 border-b"
+          Add Honorary
+        </button>
+      </form>
+      {statusMessage && (
+        <p
+          className={`mb-4 text-sm ${
+            statusMessage.includes("successfully")
+              ? "text-green-600"
+              : "text-red-600"
+          }`}
+        >
+          {statusMessage}
+        </p>
+      )}
+      <h2 className="text-2xl font-semibold mb-4">
+        Existing Honorary Members
+      </h2>
+      {isLoading ? (
+        <p className="text-gray-600">Loading honorary members...</p>
+      ) : honoraryList.length > 0 ? (
+        <ul className="bg-white shadow-md rounded-lg p-6">
+          {honoraryList.map((member) => (
+            <li
+              key={member.honoraryId}
+              className="flex justify-between items-center mb-4 p-2 border-b"
+            >
+              <span className="text-lg font-medium">
+                {member.name} - {member.role}
+              </span>
+              <button
+                onClick={() => handleDelete(member.honoraryId)}
+                className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-md"
               >
-                <span className="text-lg font-medium">
-                  {member.name} - {member.role}
-                </span>
-                <button
-                  onClick={() => handleDelete(member.honoraryId)}
-                  className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-md"
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-gray-600">No honorary members available.</p>
-        )}
-      </div>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-gray-600">No honorary members available.</p>
+      )}
     </div>
+  </div>
   );
 }

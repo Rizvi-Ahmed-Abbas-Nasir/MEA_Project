@@ -29,7 +29,7 @@ const GoogleTranslate = () => {
             includedLanguages: 'en,mr',
             layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
           },
-          elementId
+          'google_translate_element'
         );
 
         // Automatically set language to Marathi after Google Translate initializes
@@ -44,25 +44,25 @@ const GoogleTranslate = () => {
     }
 
     // Hide Google Translate top banner and logo
-    const hideGoogleTranslateElements = () => {
-      const style = document.createElement('style');
-      style.innerHTML = `
-        /* Hides the Google Translate iframe banner at the top of the page */
+    // const hideGoogleTranslateElements = () => {
+    //   const style = document.createElement('style');
+    //   style.innerHTML = `
+    //     /* Hides the Google Translate iframe banner at the top of the page */
         
-        /* Prevents the page content from shifting down */
-        body {
-          top: 0px !important;
-        }
-        /* Hides the Google logo and text in the dropdown widget */
+    //     /* Prevents the page content from shifting down */
+    //     body {
+    //       top: 0px !important;
+    //     }
+    //     /* Hides the Google logo and text in the dropdown widget */
         
-        .goog-te-gadget {
-          font-size: 0px;
-        }
-      `;
-      document.head.appendChild(style);
-    };
+    //     .goog-te-gadget {
+    //       font-size: 0px;
+    //     }
+    //   `;
+    //   document.head.appendChild(style);
+    // };
 
-    hideGoogleTranslateElements();
+    // hideGoogleTranslateElements();
 
     // Observe when the Google Translate toolbar is added to the DOM
     const observer = new MutationObserver(() => {
@@ -85,6 +85,7 @@ const GoogleTranslate = () => {
     <>
       <Head>
         <style>{`
+          
           body {
             top: 0px !important;
           }
