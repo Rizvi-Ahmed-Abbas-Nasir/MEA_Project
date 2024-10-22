@@ -41,38 +41,14 @@ export default function Header() {
 
   return (
     <div className="HeaderContainer shadow-lg w-full flex flex-col text-white bg-white ">
-      <div className="NavContainer hidden w-full h-[4.2vh] bg-[#c72626] justify-between justify-items-center items-center xl:flex ">
-        <div className="flex justify-center pl-10">
-          <h4 className="text-white text-[0.9rem] font-bold ">
-            Welcome To Municipal Engineer Association
-          </h4>
-        </div>
-        <div className="flex justify-end items-center pr-10 gap-5">
-          <div className="flex justify-center gap-1">
-            <div className="flex justify-center">
-              <span className="p-1">
-                <FaLocationDot />
-              </span>
-              <h5 className="text-white text-[0.8rem]"> example@gmail.com</h5>
-            </div>
-          </div>
-          <div className="flex gap-1">
-            <div className="flex justify-center">
-              <span className="p-1 ">
-                <IoCall />
-              </span>
-              <h5 className="text-white text-[0.8rem]">+ 91 242342523</h5>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <div className="HeaderContent h-[12vh] header-section w-[100%] bg-white flex justify-center items-center">
         <div className="flex w-[100%] bg-white justify-start justify-items-center h-[12vh]">
-          <div className="flex">
+          <div className="flex justify-center items-center">
             <Image
             alt="logo"
               src={LOGO}
-              className="EMALOGOP ml-2"
+              className="EMALOGOP ml-2 w-[7vh]  md:w-[10vh]  "
               width={100}
               height={100}
             />
@@ -160,7 +136,7 @@ export default function Header() {
                 <h3 className="cursor-pointer hidden xl:flex">Admin</h3>
               </a>
             ) : null}
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center pt-5 md:pt-0">
               <GoogleTranslate />
             </div>
           </div>
@@ -219,16 +195,7 @@ export default function Header() {
                     Distinguished Honorary Fellows
                   </Link>
                 </li>
-                <li>
-                  <Link href="#" className="dropdown-link">
-                    Contributing in Science and Technology
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="dropdown-link">
-                    Participation and Appreciation
-                  </Link>
-                </li>
+               
               </ul>
             </div>
             <div className="relative group items-center">
@@ -239,40 +206,9 @@ export default function Header() {
                 </span>
               </h3>
               <ul className="dropdown-menu2">
-                <li>
-                  <Link href="background-of-mea" className="dropdown-link">
-                    Background of MEA
-                  </Link>
-                </li>
-                {/* <li>
-                  <Link href="objectives" className="dropdown-link">
-                    Objectives
-                  </Link>
-                </li> */}
-                <li>
-                  <Link
-                    href="recognition-and-affiliation"
-                    className="dropdown-link"
-                  >
-                    Recognition and Affiliation
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="distinguished-honorary-fellows"
-                    className="dropdown-link"
-                  >
-                    Distinguished Honorary Fellows
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="dropdown-link">
-                    Contributing in Science and Technology
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="dropdown-link">
-                    Participation and Appreciation
+              <li>
+                  <Link href="/registered-members" className="dropdown-link">
+                    Registered Members
                   </Link>
                 </li>
               </ul>
@@ -292,7 +228,7 @@ export default function Header() {
                   <h3 className="cursor-pointer  xl:flex">Profile</h3>
                 </Link>
               ) : (
-                <Link href="/register">
+                <Link href="/login">
                   <h3 className="cursor-pointer  xl:flex">
                     Member Registration
                   </h3>

@@ -27,26 +27,26 @@ export default function Page() {
           "Content-Type": "application/json",
         },
       });
-          emailjs
-        .sendForm(
-          "service_d5hpehs",
-          "template_oi2xykk",
-          form.current,
-          "z8Dw4X9gamLOG7blh"
-        )
-        .then(
-          () => {
-            setName("");
-            setEmail("");
-            setNumber("");
-            setAddress("");
-            setMessage("");
-            alert("FORM SUBMITTED !");
-          },
-          (error) => {
-            setError("Email sending failed. Please try again.");
-          }
-        );
+        //   emailjs
+        // .sendForm(
+        //   "service_d5hpehs",
+        //   "template_oi2xykk",
+        //   form.current,
+        //   "z8Dw4X9gamLOG7blh"
+        // )
+        // .then(
+        //   () => {
+        //     setName("");
+        //     setEmail("");
+        //     setNumber("");
+        //     setAddress("");
+        //     setMessage("");
+        //     alert("FORM SUBMITTED !");
+        //   },
+        //   (error) => {
+        //     setError("Email sending failed. Please try again.");
+        //   }
+        // );
     } catch (error) {
       setError("Failed to submit the form. Please try again.");
     }
@@ -166,7 +166,7 @@ export default function Page() {
                   sitekey="6Ldhhx0qAAAAAEvzDiZGXLvvpLj3e6AmJPh6TI1B"
                   onChange={val => setCapVal(val)} />
                 </div>
-                <button disabled={!capVal}
+                <button 
                   type="submit"
                   className="w-24 h-12 p-2 bg-red-500 text-white rounded-full hover:bg-[#c72626] focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >

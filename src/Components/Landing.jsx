@@ -45,21 +45,22 @@ export default function Landing() {
         fetchImages();
        
     }, []);
+    console.log(typeof document);
     if (typeof document !== 'undefined') {
-        // will run in client's browser only
-        var hiddenElements1 = document.querySelectorAll(".hidden3");
-        var hiddenElements = document.querySelectorAll(".hidden2");
-        var hiddenElement2 = document.querySelectorAll(".hidden1");
-        var hiddenElement3 = document.querySelectorAll(".hidden4");
+    //   //  will run in client's browser only
+    //     var hiddenElements1 = document.querySelectorAll(".hidden3");
+    //     var hiddenElements = document.querySelectorAll(".hidden2");
+    //     var hiddenElement2 = document.querySelectorAll(".hidden1");
+    //     var hiddenElement3 = document.querySelectorAll(".hidden4");
 
-        //   var hiddenElement2 = document.querySelectorAll(".hidden3");
-        // console.log(hiddenElements);
-        OnScrollAnimation(hiddenElements1)
-        OnScrollAnimation(hiddenElements)
-        OnScrollAnimation(hiddenElement2)
-        OnScrollAnimation(hiddenElement3)
+    //     //   var hiddenElement2 = document.querySelectorAll(".hidden3");
+    //     // console.log(hiddenElements);
+    //     OnScrollAnimation(hiddenElements1);
+    //     OnScrollAnimation(hiddenElements)
+    //     OnScrollAnimation(hiddenElement2)
+    //     OnScrollAnimation(hiddenElement3)
 
-        //    OnScrollAnimation(hiddenElement2)
+    //        OnScrollAnimation(hiddenElement2)
     }
     return (
         <div>
@@ -75,7 +76,7 @@ export default function Landing() {
                 /> */}
                 <Banner />
             </div>
-            <div className=" hidden1 w-[100%]   bg-white  flex justify-center">
+            <div className="  w-[100%]   bg-white  flex justify-center">
                 <div className="w-[100%] h-[70vh] sm:h-[25vh] md:h-[65vh] bg-white mt-[-10rem] z-10 flex  justify-around flex-wrap xl:h-[25vh] gap-5 xl:flex-nowrap shadow-xl xl:w-[90%] text-center    ">
                     <div className=" flex justify-center  items-center px-10 py-5  text-center gap-2">
                         <h1 className="text-[2.5rem] text-[#c72626] xl:text-[3rem] font-bold ">68</h1><h3 className="text-[0.7rem] w-14 xl:text-[0.8rem]">YEAR&apos;S FOUNDATION</h3>
@@ -94,7 +95,7 @@ export default function Landing() {
             </div>
             <div className="w-full bg-white flex justify-center flex-col items-center gap-10 ">
                 <div className="w-[90%] h-[inherte] text-black flex items-center xl:justify-around xl:items-start gap-20 md:gap-10 xl:gap-5 flex-col xl:flex-row">
-                    <div className=" w-[100%] xl:w-[35%] flex  justify-center flex-col xl:block hidden2 ">
+                    <div className=" w-[100%] xl:w-[35%] flex  justify-center flex-col xl:block  ">
                         <h1 className={`${nunito.className} text-[2rem]  font-bold `}>WELCOME TO MUNICIPAL ENGINEERS ASSOCIATION</h1>
                         <div className="w-[87%]">
                             <h5 className="mt-5 ">The struggles undertaken by the Municipal Engineers Association have yielded numerous results. For instance,
@@ -104,7 +105,7 @@ export default function Landing() {
                             <button className=" py-4 px-4 rounded-md mt-5 bg-[#c72626]  text-white">Learn More</button>
                         </Link>
                     </div>
-                    <div className="w-[100%]  xl:w-[30%] md:h-[80] xl:h-[50vh] hidden3 ">
+                    <div className="w-[100%]  xl:w-[30%] md:h-[80] xl:h-[50vh] ">
                         <Image src={"/assets/images/home.png"}
                         alt="heroimage"
                             className="w-[100%] h-[100%] xl:h-[100%] object-fit  "
@@ -128,7 +129,7 @@ export default function Landing() {
             </div>
             <div className="w-full h-[inherte] flex justify-center  ">
                 <div className=" w-[100%] px-[15px] md:w-full xl:w-[90%] h-[inherte] flex justify-around items-center  flex-wrap md:gap-10 xl:gap-2  ">
-                    <div className="  hidden2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="  h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaLandmarkDome style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -145,7 +146,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className="hidden2  h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="  h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaRegBuilding style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -162,7 +163,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className=" hidden2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className=" h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaBook style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -179,7 +180,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className=" hidden3 h-[40vh] md:my-7   md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="  h-[40vh] md:my-7   md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className="hover:animate-pulse hover:shadow-xl  h-[10vh] uration-300 ease-in-out ">
                                 <FaPerson style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -196,7 +197,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className=" hidden3 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className=" h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaLandmark style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -233,7 +234,7 @@ export default function Landing() {
 
                 </div>
             </div>
-            <div className=" hidden1 w-full h-[inherte]  flex justify-start items-center flex-col gap-5">
+            <div className="  w-full h-[inherte]  flex justify-start items-center flex-col gap-5">
 
                 <div className="w-[90%] h-[15vh] bg-[#c72626] flex justify-center items-center">
                     <h1 className="text-[1.2rem] xl:text-[2rem] text-white ">Distinguished Honorary Fellows</h1>
@@ -338,10 +339,11 @@ export default function Landing() {
               <h1 className="text-[2.5rem]">Events</h1>
             </div>
             <div className="w-full min-h-fit flex  flex-wrap m-0 md:m-10 gap-10">
-              {events.map((event) => (
+              {
+              events.map((event) => (
                 <div
                   key={event.eventId}
-                  className="relative w-full max-w-sm overflow-hidden shadow-lg cursor-pointer group hidden3"
+                  className="relative w-full max-w-sm overflow-hidden shadow-lg cursor-pointer group "
                 >
                   <Image
                     className="w-full h-full object-cover transition-transform duration-300 transform group-hover:scale-110"

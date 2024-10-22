@@ -93,8 +93,8 @@ const GoogleTranslate = () => {
       </Head>
      
       <div id="google_translate_element" className='mb-[-10%]'></div>
-      <div className='h-[30px] w-[200px] ml-[-50%] mb-[-15%] bg-white '>
-        <div className='h-[100%] w-[100px] mt-[-10%] ml-[100px] bg-white'></div> </div>
+      {/*<div className='h-[30px] w-[200px] ml-[-50%] mb-[-15%] bg-white '>
+        <div className='h-[100%] w-[100px] mt-[-10%] ml-[100px] bg-white'></div> </div>*/}
     </>
   );
 };
