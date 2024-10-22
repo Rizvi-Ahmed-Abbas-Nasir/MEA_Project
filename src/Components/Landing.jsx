@@ -372,11 +372,11 @@ export default function Landing() {
                             <li>Adv. Mahabal Shetty - President / General Secretary</li>
                             <li>Engr. Vijay Pachpande - Vice President</li>
                             <li>Engr. Ramesh Malviya - Vice President</li>
-                            <li>Engr. Ramesh Kurhade - Secretary</li>
-                            <li>Engr. T.V. Shah - Founder Member</li>
                             <li>Engr. Jeevan Patil - Vice President</li>
                             <li>Engr. Rajendra Joshi - Vice President</li>
                             <li>Engr. Satish Kumar Vani - Vice President</li>
+                            <li>Engr. T.V. Shah - Founder Member</li>
+                            <li>Engr. Ramesh Kurhade - Secretary</li>
 
                         </ul>
                     </div>
@@ -384,13 +384,10 @@ export default function Landing() {
                     <div className="nameop w-[50%]">
                         <ul className="max-w-md space-y-1  list-disc list-inside">
                             <li>Engr. Navnath Ghadge - Executive Chairman</li>
+                            <li>Engr. Rajendra Joshi - Vice President</li>
                             <li>Engr. Vishal Kokate - Secretary</li>
                             <li>Engr. Yashpal Hungergekar - Secretary</li>
-                            <li>Engr. Rajendra Joshi - Vice President</li>
-                            <li>Engr. Rajendra Joshi - Vice President</li>
-                            <li>Engr. Vishal Kokate - Secretary</li>
-                            <li>Engr. Jagannath Gavane - Secretary</li>
-                            <li>Engr. Navnath Ghadge - Executive Chairman</li>
+                            <li>Engr. Jagannath Gavane - Secretary</li>                          
                         </ul>
                     </div>
 
