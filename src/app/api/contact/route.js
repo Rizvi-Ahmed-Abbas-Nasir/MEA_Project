@@ -16,18 +16,18 @@ export async function POST(req) {
             secure:true,
             port:465,
             auth: {
-                user: "santoshallu1234@gmail.com",
-                pass: "spufdfwtjmtkhoqr"
+                user: process.env.NEXT_PUBLIC_NODEMAILER_USER,
+                pass: process.env.NEXT_PUBLIC_NODEMAILER_PASS
               }
           });
            
 
           console.log(email);
            const reciver = {
-            from: 'santoshallu1234@gmail.com', // sender address
-            to: 'san8976349630@gmail.com', // list of receivers
+            from: 'bhambidsatyam1@gmail.com', // sender address
+            to: 'bhambidsatyam@gmail.com', // list of receivers
             subject:'Someone tried to contact you from Mea-Website', // Subject line
-            text: "Hello world?", // plain text body
+            text: "Someone tried to contact you from Mea-Website", // plain text body
             html: `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,9 +44,9 @@ export async function POST(req) {
 
         <div style="text-align: center; padding-top: 20px;">
           <p style="font-size: 12px; color: #bbb;">${fullName} tried to contact you from MEA website</p>
-          <p style="font-size: 12px; color: #bbb;">contact-${contactNumber}</p>
-          <p style="font-size: 12px; color: #bbb;">address-${address}</p>
-          <p style="font-size: 12px; color: #bbb;">message-${message}</p>
+          <p style="font-size: 12px; color: #bbb;">contact: ${contactNumber}</p>
+          <p style="font-size: 12px; color: #bbb;">address: ${address}</p>
+          <p style="font-size: 12px; color: #bbb;">message: ${message}</p>
         </div>
       </div>
     </div>
@@ -58,13 +58,13 @@ export async function POST(req) {
            const info = await transporter.sendMail(reciver);
            console.log("Message sent: %s", info.messageId);
 
-        // const result = await executeQuery({
-        //     query: "INSERT INTO replies (fullName, email, contactNumber, address, message) values(?,?,?,?,?)",
-        //     values: [fullName, email, contactNumber, address, message]
-        // })
+        const result = await executeQuery({
+            query: "INSERT INTO replies (fullName, email, contactNumber, address, message) values(?,?,?,?,?)",
+            values: [fullName, email, contactNumber, address, message]
+        })
 
         
-         return NextResponse.json({info})
+         return NextResponse.json({message: "message sent!", result: result, info}, {status: 200})
 
     } catch (e) {
         console.log(e)

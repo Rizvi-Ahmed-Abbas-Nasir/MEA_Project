@@ -86,7 +86,7 @@ export default function Landing() {
                 duration:1.5,
                 scrollTrigger: {
                     trigger: '.nameop',
-                    start: 'top bottom',
+                    start: '50% bottom',
                     end: 'center center',
                     scrub:true,
                   }
@@ -191,12 +191,12 @@ export default function Landing() {
                         />
                     </div> */}
                 </div>
-                <div className="w-[90%] h-[15vh] bg-[#c72626]  items-center justify-center flex">
-                    <h1 className=" text-[1.5rem] xl:text-[2.5rem] text-white  ">Municipal Engineer Association</h1>
+                <div className="w-[90%] h-[15vh] bg-[#c72626] flex justify-center items-center">
+                    <h1 className=" text-[1.2rem] xl:text-[2rem] text-white ">Municipal Engineer Association</h1>
                 </div>
             </div>
             <div className="w-full h-[inherte] flex justify-center  ">
-                <div className="slide2box w-[100%] px-[15px] md:w-full xl:w-[90%] h-[inherte] flex justify-center items-center  flex-wrap md:gap-10 xl:gap-10 ">
+                <div className="slide2box w-[100%] px-[15px] md:w-full xl:w-[90%] h-[inherte] flex justify-center items-center  gap-10 flex-wrap md:gap-10 xl:gap-10 ">
                     <div className=" slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] duration-300 ease-in-out ">
@@ -282,7 +282,7 @@ export default function Landing() {
                         </div>
 
                     </div>
-                    <div className=" hidden3 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaCube style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />

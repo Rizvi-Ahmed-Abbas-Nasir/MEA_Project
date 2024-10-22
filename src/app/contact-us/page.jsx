@@ -2,7 +2,7 @@
 import OnScrollAnimation from "../../Components/OnScrollAnimmation";
 import { useEffect, useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import ReCAPTCHA from "react-google-recaptcha"
+import ReCAPTCHA from "react-google-recaptcha";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 
@@ -22,31 +22,42 @@ export default function Page() {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify({ fullName, email, contactNumber, address, message }),
+        body: JSON.stringify({
+          fullName,
+          email,
+          contactNumber,
+          address,
+          message,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-        //   emailjs
-        // .sendForm(
-        //   "service_d5hpehs",
-        //   "template_oi2xykk",
-        //   form.current,
-        //   "z8Dw4X9gamLOG7blh"
-        // )
-        // .then(
-        //   () => {
-        //     setName("");
-        //     setEmail("");
-        //     setNumber("");
-        //     setAddress("");
-        //     setMessage("");
-        //     alert("FORM SUBMITTED !");
-        //   },
-        //   (error) => {
-        //     setError("Email sending failed. Please try again.");
-        //   }
-        // );
+      //   emailjs
+      // .sendForm(
+      //   "service_d5hpehs",
+      //   "template_oi2xykk",
+      //   form.current,
+      //   "z8Dw4X9gamLOG7blh"
+      // )
+      // .then(
+      //   () => {
+      //     setName("");
+      //     setEmail("");
+      //     setNumber("");
+      //     setAddress("");
+      //     setMessage("");
+      //     alert("FORM SUBMITTED !");
+      //   },
+      //   (error) => {
+      //     setError("Email sending failed. Please try again.");
+      //   }
+      // );
+      if (res.ok) {
+        alert("your message has been sent!");
+      } else {
+        alert("an error occured while sending message, try again later");
+      }
     } catch (error) {
       setError("Failed to submit the form. Please try again.");
     }
@@ -69,7 +80,7 @@ export default function Page() {
 
   return (
     <>
-    <Header />
+      <Header />
       <main>
         <section className="h-44 bg-[#232323] flex justify-center items-center flex-col text-white">
           <h1 className="text-5xl p-3">Contact Us</h1>
@@ -112,7 +123,8 @@ export default function Page() {
                 ref={form}
                 className="flex flex-col space-y-4"
               >
-                <input required
+                <input
+                  required
                   type="text"
                   name="fullName"
                   value={fullName}
@@ -122,7 +134,8 @@ export default function Page() {
                   placeholder="Your Full Name"
                   className="px-4 py-2 focus:outline-none border-b border-black"
                 />
-                <input required
+                <input
+                  required
                   type="email"
                   name="email"
                   value={email}
@@ -132,7 +145,8 @@ export default function Page() {
                   placeholder="Your Email"
                   className="px-4 py-2 focus:outline-none border-b border-black"
                 />
-                <input required
+                <input
+                  required
                   type="tel"
                   name="contactNumber"
                   value={contactNumber}
@@ -142,7 +156,8 @@ export default function Page() {
                   placeholder="Your Contact Number"
                   className="px-4 py-2 focus:outline-none border-b border-black"
                 />
-                <input required
+                <input
+                  required
                   type="text"
                   name="address"
                   value={address}
@@ -152,7 +167,8 @@ export default function Page() {
                   placeholder="Your Address"
                   className="px-4 py-2 focus:outline-none border-b border-black"
                 />
-                <textarea required
+                <textarea
+                  required
                   name="message"
                   value={message}
                   onChange={(e) => {
@@ -162,12 +178,14 @@ export default function Page() {
                   className="px-4 py-2 focus:outline-none border-b border-black h-32 resize-none"
                 />
                 <div>
-                  <ReCAPTCHA 
-                  sitekey="6Ldhhx0qAAAAAEvzDiZGXLvvpLj3e6AmJPh6TI1B"
-                  onChange={val => setCapVal(val)} />
+                  <ReCAPTCHA
+                    sitekey="6Ldhhx0qAAAAAEvzDiZGXLvvpLj3e6AmJPh6TI1B"
+                    onChange={(val) => setCapVal(val)}
+                  />
                 </div>
-                <button 
+                <button
                   type="submit"
+                  disabled = {!capVal}
                   className="w-24 h-12 p-2 bg-red-500 text-white rounded-full hover:bg-[#c72626] focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   Submit
@@ -190,7 +208,7 @@ export default function Page() {
           </section>
         </section>
       </main>
-                  <Footer />
+      <Footer />
     </>
   );
 }
