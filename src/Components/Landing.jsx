@@ -197,7 +197,7 @@ export default function Landing() {
             </div>
             <div className="w-full h-[inherte] flex justify-center  ">
                 <div className="slide2box w-[100%] px-[15px] md:w-full xl:w-[90%] h-[inherte] flex justify-center items-center  gap-10 flex-wrap md:gap-10 xl:gap-10 ">
-                    <div className=" slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className=" slide2 h-[30vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] duration-300 ease-in-out ">
                                 <FaLandmarkDome style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -209,12 +209,9 @@ export default function Landing() {
                         <div className="mt-5">
                             <p className="text-justify"> It is an established fact that some engineers who run businesses under the name of Brihanmumbai Engineers Union become active in December by showing...</p>
                         </div>
-                        <div>
-                            <button className="py-2 px-5 bg-[#c72626] text-white mt-5">Learn More </button>
-                        </div>
 
                     </div>
-                    <div className=" slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className=" slide2 h-[30vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaRegBuilding style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -226,12 +223,9 @@ export default function Landing() {
                         <div className="mt-5">
                             <p className="text-justify">Our Freedom movement gathered momentum in the early thirties and brought about a new awakening amongst the Freedom seeking inteligentsia...</p>
                         </div>
-                        <div>
-                            <button className="py-2 px-5 bg-[#c72626] text-white mt-5">Learn More </button>
-                        </div>
 
                     </div>
-                    <div className="slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="slide2 h-[30vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaBook style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -243,12 +237,9 @@ export default function Landing() {
                         <div className="mt-5">
                             <p className="text-justify">Social Security and Rights: MEU ensures social security for engineers by designing social security schemes and resolving...</p>
                         </div>
-                        <div>
-                            <button className="py-2 px-5 bg-[#c72626] text-white mt-5">Learn More </button>
-                        </div>
 
                     </div>
-                    <div className=" slide2 h-[40vh] md:my-7   md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className=" slide2 h-[30vh] md:my-7   md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className="hover:animate-pulse hover:shadow-xl  h-[10vh] uration-300 ease-in-out ">
                                 <FaPerson style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -260,12 +251,9 @@ export default function Landing() {
                         <div className="mt-5">
                             <p className="text-justify">Dispute Resolution: After attacks from municipal councilors, the organization provided support and pressured the administration to take...</p>
                         </div>
-                        <div>
-                            <button className="py-2 px-5 bg-[#c72626] text-white mt-5">Learn More </button>
-                        </div>
 
                     </div>
-                    <div className="slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="slide2 h-[30vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaLandmark style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -277,12 +265,9 @@ export default function Landing() {
                         <div className="mt-5">
                             <p className="text-justify">Our Freedom movement gathered momentum in the early thirties and brought about a new awakening amongst the Freedom seeking inteligentsia...</p>
                         </div>
-                        <div>
-                            <button className="py-2 px-5 bg-[#c72626] text-white mt-5">Learn More </button>
-                        </div>
 
                     </div>
-                    <div className="slide2 h-[40vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
+                    <div className="slide2 h-[30vh] md:my-7  md:h-[45vh] xl:h-[40vh] w-[20rem] flex-col  flex justify-start">
                         <div className=" flex ">
                             <div className=" hover:animate-pulse hover:shadow-xl h-[10vh] uration-300 ease-in-out ">
                                 <FaCube style={{ color: "#c72626", fontSize: '6rem', background: "white", padding: "1.2rem" }} />
@@ -293,9 +278,6 @@ export default function Landing() {
                         </div>
                         <div className="mt-5">
                             <p className="text-justify">Our Freedom movement gathered momentum in the early thirties and brought about a new awakening amongst the Freedom seeking inteligentsia...</p>
-                        </div>
-                        <div>
-                            <button className="py-2 px-5 bg-[#c72626] text-white mt-5">Learn More </button>
                         </div>
 
                     </div>
