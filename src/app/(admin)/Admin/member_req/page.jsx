@@ -28,7 +28,8 @@ export default function Page() {
           }
   
           const data = await response.json();
-          setMembers(data);
+          // Ensure that the data is an array before setting it to members
+          setMembers(Array.isArray(data) ? data : []);
         } catch (error) {
           console.error("Error fetching members:", error);
         }
