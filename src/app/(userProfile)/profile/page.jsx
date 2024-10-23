@@ -35,7 +35,7 @@ export default function Page() {
                             </div>
                         </div>
                         <button
-                            onClick={() => signOut()}
+                            onClick={() => signOut({ callbackUrl: '/login' })}
                             className="mt-8 w-full bg-red-500 text-white py-3 rounded-md font-semibold hover:bg-red-600 transition duration-300"
                         >
                             Sign Out
