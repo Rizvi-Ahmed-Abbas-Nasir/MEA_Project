@@ -14,7 +14,7 @@ export default function Footer() {
                 <h1 className="text-lg">Municipal Engineer Association</h1>
                 <br />
                 <div className="text-lightText">
-                <p className="text-sm">&quot;Engineering is not just about building things; it&apos;s about building the future and pushing the boundaries of what&apos;s possible."</p>
+                <p className="text-sm">&quot;Engineering is not just about building things; it&apos;s about building the future and pushing the boundaries of what&apos;s possible.&quot;</p>
                 <br />
                 <p className="flex justify-center"><span className="p-1"><FaLocationDot /></span> 237-239, Bal Dandavate Smruti, Bawla Masjid, Joshi Marg, Dilai Road, Mumbai-400013</p>
                 <br />
@@ -28,8 +28,8 @@ export default function Footer() {
                     <Link href={'/'} className="p-2">HomePage</Link>
                     <Link href={'/background-of-mea'} className="p-2">Background of MEA</Link>
                     <Link href={'/contact-us'} className="p-2">Contact us</Link>
-                    <Link href={'/register'} className="p-2">Members Registration</Link>
-                    <Link href={'/register'} className="p-2">Recognition & AFFILIATION</Link>
+                    <Link href={'/login'} className="p-2">Members Registration</Link>
+                    <Link href={'/recognition-and-affiliation'} className="p-2">Recognition & AFFILIATION</Link>
                 </ul>
             </section>
             <section className=" p-5 h-full m-10 flex flex-col justify-center">
@@ -39,7 +39,7 @@ export default function Footer() {
                     <Link href={'/'} className="p-2">HomePage</Link>
                     <Link href={'/background-of-mea'} className="p-2">Background of MEA</Link>
                     <Link href={'/contact-us'} className="p-2">Contact us</Link>
-                    <Link href={'/recognition-and-affiliation'} className="p-2">Members Registration</Link>
+                    <Link href={'/login'} className="p-2">Members Registration</Link>
                     <Link href={'/distinguished-honorary-fellows'} className="p-2">Distinguished Honorary Fellows</Link>
                 </ul>
             </section>

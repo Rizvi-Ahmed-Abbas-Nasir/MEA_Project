@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useEffect,useState,useRef  } from "react";
 import { IoCall } from "react-icons/io5";
-import IMGs from "../Assets/IMGs/man.png"
+import IMGs from "../Assets/IMGs/man.png";
+import Celebration from "./celebration";
 import { Nunito } from 'next/font/google'
 import { FaRegBuilding } from "react-icons/fa6";
 import { FaCube } from "react-icons/fa6";
@@ -132,6 +133,7 @@ export default function Landing() {
     }
     return (
         <div ref={elementRef}>
+            <Celebration/>
             <Header />
         <div className=" w-[100%] bg-white flex gap-20 flex-col overflow-hidden">
             <div className=" w-full h-[100vh] flex justify-center ">
