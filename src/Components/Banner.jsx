@@ -26,6 +26,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const BannerComponent = () => {
   const imageList = [
+    "/images/bg0.jpg",
     "/images/bg1.jpeg",   // Leading slash for public images
     "/images/bg2.jpeg",
     "/images/bg3.jpeg",

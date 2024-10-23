@@ -139,6 +139,16 @@ export default function Header() {
             <div className="flex items-center justify-center pt-5 md:pt-0">
               <GoogleTranslate />
             </div>
+            
+          </div>
+          <div className="flex justify-center items-center">
+            <Image
+            alt="logo"
+              src={'/images/logored.jpg'}
+              className="EMALOGOP ml-2 w-[7vh]  md:w-[10vh]  "
+              width={100}
+              height={100}
+            />
           </div>
         </div>
         <div
