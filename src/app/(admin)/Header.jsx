@@ -46,7 +46,7 @@ const AdminHeader = () => {
               >
                 <FaUser className="mr-2" />
                 <span className="font-medium text-sm md:text-[.6rem] lg:text-lg xl:text-xl whitespace-nowrap">
-                  Member's Request
+                  Member&apos;s Request
                 </span>
               </Link>
             </li>
@@ -159,7 +159,7 @@ const AdminHeader = () => {
                   href="/Admin/member_req"
                   className="text-sm md:text-base lg:text-lg xl:text-xl"
                 >
-                  Member's Request
+                  Member&apos;s Request
                 </Link>
               </li>
               <li>

@@ -107,7 +107,7 @@ export default function RegisterForm() {
           </form>
           <div className="mt-4 text-center">
             <p>
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <span className="text-red-700 font-medium">
                 <Link href="/ecnumber">
                   Register

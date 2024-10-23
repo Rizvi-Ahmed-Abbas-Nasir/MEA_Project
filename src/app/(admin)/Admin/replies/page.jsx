@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import NAV from "../../Navbar";
+import Unauthorized from "../../Unauthorized";
 
 const Page = () => {
   const [replies, setReplies] = useState([]);
